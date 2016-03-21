@@ -273,7 +273,7 @@ request.post({
     .pipe(browserSync.stream({once: true}));
 });*/
 
-gulp.task('styles', function () {
+/*gulp.task('styles', function () {
   return gulp.src('app/styles/main*.scss')
     .pipe($.plumber())
     .pipe($.rubySass({
@@ -282,12 +282,12 @@ gulp.task('styles', function () {
     }))
     .pipe($.autoprefixer({browsers: ['last 1 version']}))
     .pipe(gulp.dest('.tmp/styles'));
-});
+});*/
 
-/*gulp.task('styles', function styles() {
+gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src('demo/main.scss')
+  return gulp.src('app/styles/main.scss')
     .pipe($.changed(DEST)) // only pass through changed files
     .pipe($.plumber()) // do not break on error
     .pipe($.sourcemaps.init({loadMaps:true})) // write sourcemap to let browsers know the original file and line number
@@ -306,7 +306,7 @@ gulp.task('styles', function () {
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(DEST))
     .pipe(browserSync.stream({once:true})); // after rebuild, let browser-sync reload browser.
-});*/
+});
 
 /* Bundle js with watchify + browserify + debowerify + babelify*/
 // browerify has ite own workflow. It does not follow the gulp way.
