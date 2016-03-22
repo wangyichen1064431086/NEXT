@@ -248,9 +248,9 @@ const minify = require('html-minifier').minify;
 gulp.task(function mustache() {
   const DEST = '.tmp';
 
-  const headerData = JSON.parse(fs.readFileSync('src/model/header-data2.json'));
+  const headerData = JSON.parse(fs.readFileSync('client/model/header-data2.json'));
 
-  return gulp.src('src/index.mustache')
+  return gulp.src('client/index.mustache')
 
     .pipe($.changed(DEST))
     .pipe($.mustache(headerData, {
@@ -270,31 +270,25 @@ gulp.task(function mustache() {
     .pipe(browserSync.stream({once: true}));
 });
 
-/*gulp.task('styles', function () {
-  return gulp.src('app/styles/main*.scss')
-    .pipe($.plumber())
-    .pipe($.rubySass({
-      style: 'expanded',
-      precision: 10
-    }))
-    .pipe($.autoprefixer({browsers: ['last 1 version']}))
-    .pipe(gulp.dest('.tmp/styles'));
-});*/
+gulp.task('htmllint', function() {
+  gulp.src('client/index.mustache')
+    .pipe($.html5Lint());
+});
 
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src('app/styles/main*.scss')
-    .pipe($.changed(DEST)) // only pass through changed files
-    .pipe($.plumber()) // do not break on error
-    .pipe($.sourcemaps.init({loadMaps:true})) // write sourcemap to let browsers know the original file and line number
-    .pipe($.sass({ // use node-sass rather than ruby sass
+  return gulp.src('client/main.scss')
+    .pipe($.changed(DEST)) 
+    .pipe($.plumber()) 
+    .pipe($.sourcemaps.init({loadMaps:true})) 
+    .pipe($.sass({ 
       outputStyle: 'expanded',
       precision: 10,
-      includePaths: ['bower_components'] // in which path do you want sass to search your scss files.
+      includePaths: ['bower_components']
     }).on('error', $.sass.logError))
     .pipe($.postcss([
-      cssnext({ // css next autmatically add vendor prefix.
+      cssnext({ 
         features: {
           colorRgba: false
         }
@@ -302,14 +296,12 @@ gulp.task('styles', function styles() {
     ]))
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(DEST))
-    .pipe(browserSync.stream({once:true})); // after rebuild, let browser-sync reload browser.
+    .pipe(browserSync.stream({once:true})); 
 });
 
-/* Bundle js with watchify + browserify + debowerify + babelify*/
-// browerify has ite own workflow. It does not follow the gulp way.
 gulp.task('scripts', function scripts() {
   var b = browserify({
-    entries: 'demo/main.js',
+    entries: 'client/main.js',
     debug: true,
     cache: {},
     packageCache: {},
@@ -342,45 +334,79 @@ gulp.task('scripts', function scripts() {
   }
 });
 
-gulp.task('ad', function () {
-  return gulp.src('app/m/marketing/*')
-    .pipe(gulp.dest('dist/m/marketing'));
+gulp.task(function js() {
+  const DEST = '.tmp/scripts';
+
+  var b = browserify({
+    entries: 'client/main.js',
+    debug: true,
+    cache: {},
+    packageCache: {},
+    transform: [babelify, debowerify]
+  });
+
+  return b.bundle()
+    .on('error', function(err) {
+      $.util.log(err.message);
+      this.emit('end')
+    })
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe($.sourcemaps.init({loadMaps: true}))
+    .pipe($.sourcemaps.write('./'))
+    .pipe(gulp.dest(DEST));
+});
+
+gulp.task('lint', function() {
+  return gulp.src('client/**/*.js')
+    .pipe($.eslint({
+        extends: 'eslint:recommended',
+        globals: {
+          'd3': true,
+          'ga': true,
+          'fa': true
+        },
+        rules: {
+          semi: [2, "always"]
+        },
+        envs: [
+          'browser'
+        ]
+    }))
+    .pipe($.eslint.format())
+    .pipe($.eslint.failAfterError());  
+});
+
+gulp.task('data', function() {
+  return gulp.src('client/model/nav-section.json')
+    .pipe(gulp.dest('.tmp/data'))
 });
 
 
-// eslint is much flexible than jshint.
-// gulp.task('lint', function() {
-//   return gulp.src('client/**/*.js')
-//     .pipe($.eslint({
-//         extends: 'eslint:recommended',
-//         globals: {
-//           'd3': true,
-//           'ga': true,
-//           'fa': true
-//         },
-//         rules: {
-//           semi: [2, "always"]
-//         },
-//         envs: [
-//           'browser'
-//         ]
-//     }))
-//     .pipe($.eslint.format())
-//     .pipe($.eslint.failAfterError());  
-// });
+gulp.task('serve', 
+  gulp.parallel(
+    'mustache', 'styles', 'scripts', 'data',
+    function serve() {
+    browserSync.init({
+      server: {
+        baseDir: ['.tmp'],
+        routes: { 
+          '/bower_components': 'bower_components'
+        }
+      }
+    });
 
-/*gulp.task('html', ['styles'], function () {
-  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+ gulp.watch(['client/**/*.mustache', 'client/**/*.json'], gulp.parallel('mustache'));
 
-  return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.csso()))
-    .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
-    .pipe(gulp.dest('dist'));
-});*/
+    gulp.watch(['client/**/*.scss'], gulp.parallel('styles'));
+  })
+);
+
+gulp.task('clean', function() {
+  return del(['.tmp/**']).then(()=>{
+    console.log('Old files deleted');
+  });
+});
 
 gulp.task('html', function() {
   return gulp.src('app/*.html')
@@ -406,13 +432,6 @@ gulp.task('images', function () {
     .pipe(gulp.dest('dist/images'));
 });
 
-// gulp.task('fonts', function () {
-//   return gulp.src(require('main-bower-files')().concat('app/fonts/**/*'))
-//     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
-//     .pipe($.flatten())
-//     .pipe(gulp.dest('dist/fonts'));
-// });
-
 gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
@@ -423,53 +442,10 @@ gulp.task('extras', function () {
   }).pipe(gulp.dest('dist'));
 });
 
-// gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
-
-// gulp.task('connect', ['styles'], function () {
-//   var serveStatic = require('serve-static');
-//   var serveIndex = require('serve-index');
-//   var app = require('connect')()
-//     .use(require('connect-livereload')({port: 35729}))
-//     .use(serveStatic('.tmp'))
-//     .use(serveStatic('app'))
-//     // paths to bower_components should be relative to the current file
-//     // e.g. in app/index.html you should use ../bower_components
-//     .use('/bower_components', serveStatic('bower_components'))
-//     .use(serveIndex('app'));
-
-//   require('http').createServer(app)
-//     //.listen(9000)
-//     .listen(9000, '0.0.0.0')
-//     .on('listening', function () {
-//       console.log('Started connect web server on http://localhost:9000');
-//     });
-// });
-
-// gulp.task('serve', ['connect', 'watch'], function () {
-//   require('opn')('http://localhost:9000');
-// });
-
-//Browser-sync starts a static server for all devices to connect.
-//It automatically load index.html. But you can speicfy which file should be loaded initially.
-gulp.task('serve', 
-  gulp.parallel(
-    /*'mustache',*/ 'styles', /*'scripts', 'data',*/
-    function serve() {
-    browserSync.init({
-      server: {
-        baseDir: ['.tmp', 'app'], // specify which directories should be served in the server
-        routes: { // whichever static directory you want to access in the server.
-          '/bower_components': 'bower_components'
-        }
-      }
-    });
-//We do not bundle js and reload browser here since browerify could handle.
-
-//    gulp.watch(['src/**/*.mustache', 'src/**/*.json'], gulp.parallel('mustache'));
-
-    gulp.watch(['app/**/*.scss'], gulp.parallel('styles'));
-  })
-);
+gulp.task('ad', function () {
+  return gulp.src('app/m/marketing/*')
+    .pipe(gulp.dest('dist/m/marketing'));
+});
 
 // inject bower components
 // gulp.task('wiredep', function () {
