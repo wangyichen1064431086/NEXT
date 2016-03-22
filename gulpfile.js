@@ -1,4 +1,3 @@
-
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
@@ -246,7 +245,7 @@ const minify = require('html-minifier').minify;
 // });
 
 // Use template file to generate static html
-/*gulp.task(function mustache() {
+gulp.task(function mustache() {
   const DEST = '.tmp';
 
   const headerData = JSON.parse(fs.readFileSync('src/model/header-data2.json'));
@@ -269,7 +268,7 @@ const minify = require('html-minifier').minify;
     }))
     .pipe(gulp.dest(DEST))
     .pipe(browserSync.stream({once: true}));
-});*/
+});
 
 /*gulp.task('styles', function () {
   return gulp.src('app/styles/main*.scss')
