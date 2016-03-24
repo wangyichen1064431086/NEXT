@@ -21,4 +21,4 @@ if (currentLayout !== 'S') {
 	new oSticky(headerFixedEl, headerPrimaryEl.offsetHeight);
 }
 
-new oMenu(headerNavEl, 'data/nav-section.json');
+new oMenu(headerNavEl, 'data/sub-nav.json');
