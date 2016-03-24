@@ -1,258 +1,6 @@
-<!DOCTYPE html>
-<html class="no-js core" data-next-app="front-page">
- <head>
- <meta charset="utf-8" />
- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
- <title>FT中文网</title>
- <meta http-equiv="Content-Language" content="zh-CN"/>
- <meta content="<%$p.meta.description%>" name="description"/>
- <meta name="apple-mobile-web-app-status-bar-style" content="black" />
- <link rel="apple-touch-icon-precomposed" href="http://static.ftchinese.com/img/ipad_icon.png" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <link rel="preconnect" href="http://static.ftchinese.com" />
- <link rel="preconnect" href="http://i.ftimg.net" />
- <script>
- window.errorBuffer = window.errorBuffer || [];
- function beaconCssError(e) {
- window.errorBuffer.push({
- error: e ? e : new Error('CSS failed to load.'),
- context: {
- isMobileNetork: document.cookie.replace(/(?:(?:^|.*;\s*)h2_isMobile\s*\=\s*([^;]*).*$)|^.*$/, "$1") === '' ? false : true
- }
- });
- }
- </script>
-
-<script>
-window.cutsTheMustard = (typeof Function.prototype.bind !== 'undefined');
-if (window.cutsTheMustard) {
-document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js').replace(/\bcore\b/, 'enhanced');
-}
-</script>
-
-<!--[if lte IE 8]>
-    <script>
-        document.documentElement.className += ' is-ie-8';
-        document.createElement('figure');
-        document.createElement('header');
-        document.createElement('nav');
-        document.createElement('section');
-        document.createElement('article');
-        document.createElement('aside');
-        document.createElement('footer');
-    </script>
-    <script src="bower_components/svg4everybody/dist/svg4everybody.legacy.min.js"></script>
-<![endif]-->
-
-<!-- build:css styles/main.css -->
-<link rel="stylesheet" href="styles/main-common.css">
-<link rel="stylesheet" href="styles/main-header.css">
-<link rel="stylesheet" href="styles/main-nav.css">
-<link rel="stylesheet" href="styles/main-banner.css">
-<link rel="stylesheet" href="styles/main-block.css">
-<link rel="stylesheet" href="styles/main-section-apple.css">
-<link rel="stylesheet" href="styles/main-footer.css">
-<link rel="stylesheet" href="styles/main-qr.css">
-<!-- endbuild -->
-
-<!-- build:css styles/main-ie-XL.css -->
-<link rel="stylesheet" href="styles/main-ie-XL.css">
-<!-- endbuild -->
-
-<script type="text/javascript">
-if(typeof startTime === "undefined"){
-var startTime=new Date().getTime();
-}
-var adchID = '1000';
-var dolRand = Math.round(Math.random()*1000000000);//定义slot随机数实现联动互斥功能
-</script>
-
-<!-- build:js scripts/key.js -->
-<script type="text/javascript" src="scripts/key.js"></script>
-<script type="text/javascript" src="scripts/ad.js"></script>
-<!-- endbuild -->
 
 
- <link rel="icon" type="image/png" href="https://next-geebee.ft.com/assets/brand-alpha/icons/favicon-32x32.png" sizes="32x32">
- <link rel="icon" type="image/png" href="https://next-geebee.ft.com/assets/brand-alpha/icons/favicon-194x194.png" sizes="194x194">
- <link rel="apple-touch-icon" sizes="180x180" href="https://next-geebee.ft.com/assets/brand-alpha/icons/apple-touch-icon-180x180.png" />
- <meta name="msapplication-TileColor" content="#fff1e0" />
- <meta name="msapplication-TileImage" content="https://next-geebee.ft.com/assets/brand-alpha/icons/mstile-144x144.png" />
- <script>
- window.cutsTheMustard = (typeof Function.prototype.bind !== 'undefined');
- if (window.cutsTheMustard) {
- document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js').replace(/\bcore\b/, 'enhanced');
- }
- </script>
- 
- <!--[if lte IE 8]>
- <link rel="stylesheet" href="https://next-geebee.ft.com/hashed-assets/front-page/35cf21f8/ie8.css" />
- <![endif]-->
- <script>var startTime = new Date().getTime();</script>
- <script>
- if ( screen.width<=480) {
- document.write('<meta content="FT中文网" name="application-name" /><meta content="app-id=443870811" name="apple-itunes-app" />');
- } else {
- document.write('<meta content="FT中文网" name="application-name" /><meta content="app-id=396124008" name="apple-itunes-app" />');
- }
- </script>
- <link rel="alternate" type="application/rss+xml" title="FT中文网 - 每日更新" href="/rss/feed" />
- <link rel="alternate" type="application/rss+xml" title="FT中文网 - 双语阅读" href="/rss/diglossia" />
- <link rel="alternate" type="application/rss+xml" title="FT中文网 - 今日焦点" href="/rss/news" />
- <link rel="alternate" type="application/rss+xml" title="FT中文网 - 生活时尚" href="/rss/lifestyle" />
- <link rel="alternate" type="application/rss+xml" title="FT中文网 - 一周十大热门文章" href="/rss/hotstoryby7day" />
- <link rel="alternate" type="application/rss+xml" title="FT中文网 - 热门用户评论" href="/rss/hotusercomment" />
- <link rel="search" type="application/opensearchdescription+xml" title="FT中文网财经搜索" href="/opensearch.xml">
-
- </head>
- <body>
-<div id=roadblock style="margin:0 auto;position:relative;width:700px;text-align:center;">
-<script>
-var thisday1=new Date();
-var todaydate1=thisday1.getFullYear() + "-" + (thisday1.getMonth()+1) + "-" + thisday1.getDate();
-var fullsc=GetCookie ("rb2");
-if (fullsc == null && (todaydate1=="2016-3-25" || todaydate1=="2016-3-23" || todaydate1=="2016-3-22" || todaydate1=="2016-3-24" || todaydate1=="2016-3-26")) {
-document.write ('<scr' + 'ipt type="text/jav' + 'ascript" src="http://dolphin.ftimg.net/s?z=ft&amp;c=10000014&amp;slot=645072137&amp;_sex=101&amp;_trip=1&amp;_lux=1&amp;_dc=2&amp;_mm=2&amp;_sz=2&amp;_am=2" charset="gbk"></scr' + 'ipt>');
-}
-setTimeout(function(){
-stickyBottomPrepare(); 
-stickyAdsPrepare();
-}, 9000);
-</script>
-</div>
-<header class="header-container">
-<div class="header-inner">
-<div class="masthead"></div>
-<div class="header-side header-left">
-<div class="current-edition">简体中文版</div>
-</div>
-<div class="header-side header-right">
-<a href="">登录</a>
-<a class="more last" href="http://user.ftchinese.com/register">免费注册</a>
-</div>
-</div>
-</header><div class="nav-place-holder" id="nav-place-holder"><nav class="nav-container" id="nav-container">
-<div class="nav-inner">
-<ul class="nav-content">
-<li class="home on nav">
-<a href="">首页</a>
-<ul class="subnav">
-<li class="first-child ">
-<a href="/channel/special.html">专题报道</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/channel/special.html">专题报道</a></li>
-<li class="first-child nosub"><a href="/channel/datanews.html">数据新闻</a></li>
-<li class="nosub"><a href="/tag/2015%E8%BE%BE%E6%B2%83%E6%96%AF">2015达沃斯</a></li>
-<li class="last-child nosub"><a href="/tag/与FT共进午餐">与FT共进午餐</a></li>
-</ul>
-</li>
-<li class="">
-<a href="/channel/weekly.html">热门文章</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/channel/weekly.html">热门文章</a></li>
-<li class="first-child nosub"><a href="/channel/weekly.html">一周</a></li>
-<li class="nosub"><a href="/channel/monthly.html">一月</a></li>
-<li class="nosub"><a href="/channel/quarterly.html">季度</a></li>
-<li class="last-child nosub"><a href="/channel/year.html">一年</a></li>
-</ul>
-</li>
-<li class="">
-<a href="/m/events/event.html">会议活动</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/m/events/event.html">会议活动</a></li>
-<li class="first-child nosub"><a href="/m/events/recent.html">近期活动</a></li>
-<li class="nosub"><a href="/index.php/events/previous">往期活动</a></li>
-<li class="nosub"><a href="/m/events/sponsorship.html">赞助活动</a></li>
-<li class="last-child nosub"><a href="/m/events/aboutus.html">关于我们</a></li>
-</ul>
-</li>
-<li class="nosub ">
-<a href="/marketing/home">会员信息中心</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/marketing/home">会员信息中心</a></li>
-</ul>
-</li>
-<li class="nosub ">
-<a href="http://www.ftchinese.com/m/marketing/intelligence.html">FT研究院</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="http://www.ftchinese.com/m/marketing/intelligence.html">FT研究院</a></li>
-</ul>
-</li>
-<li class="nosub ">
-<a href="/channel/mba.html">FT商学院</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/channel/mba.html">FT商学院</a></li>
-</ul>
-</li>
-<li class="nosub ">
-<a href="/channel/english.html">英语学习</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/channel/english.html">英语学习</a></li>
-</ul>
-</li>
-<li class="nosub ">
-<a href="/channel/slides.html">图辑</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/channel/slides.html">图辑</a></li>
-</ul>
-</li>
-<li class="nosub ">
-<a href="/jobs/">职业机会</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/jobs/">职业机会</a></li>
-</ul>
-</li>
-<li class="last-child nosub ">
-<a href="/channel/datanews.html">数据新闻</a>
-</li>
-<li class="last-child nosub ">
-<a href="/channel/ebook.html">电子书</a>
-</li>
-<li class="rss last-child"><a href="/channel/rss.html"><img src="http://static.ftchinese.com/img/rss_link_nav.gif" alt="RSS" style="border:none;"/></a></li>
-<li class="tools"><a>工具</a>
-<ul class="subnav">
-<li class="dummy-child"><a>工具</a></li>
-<li class="nosub first-child"><a href="http://app.ftchinese.com">移动应用大全</a></li>
-<li class="nosub"><a href="/users/setting/index">基本设置</a></li>
-<li class="nosub"><a href="/users/setting/changeicon">修改头像</a></li>
-<li class="nosub"><a href="/users/setting/maillist">邮件订阅</a></li>
-<li class="nosub"><a href="/index.php/snsapi/index">同步微博</a></li>
-<li class="nosub"><a href="/users/commentstory">我的评论</a></li>
-<li class="nosub last-child"><a href="/users/favstorylist">管理收藏</a></li>
-</ul>
-</li>
-<li class="tools long"><a href="/m/corp/follow.html">关注我们</a>
-<ul class="subnav">
-<li class="dummy-child"><a href="/m/corp/follow.html">关注我们</a></li>
-<li class="first-child sns"><a target=_blank href="http://weibo.com/ftchinese" style="background-image:url(http://i.ftimg.net/picture/8/000031298_piclink_24_24.jpg)">新浪微博</a></li>
-<li class="sns"><a target=_blank href="http://e.t.qq.com/ftchinese" style="background-image:url(http://i.ftimg.net/picture/6/000031296_piclink_24_24.jpg)">腾讯微博</a></li>
-<li class="sns"><a target=_blank href="http://t.163.com/ftchinese" style="background-image:url(http://i.ftimg.net/picture/0/000031330_piclink_24_24.jpg)">网易微博</a></li>
-<li class="sns"><a target=_blank href="http://t.sohu.com/new_index" style="background-image:url(http://i.ftimg.net/picture/7/000031327_piclink_24_24.jpg)">搜狐微博</a></li>
-<li class="sns"><a target=_blank href="http://user.qzone.qq.com/622006290" style="background-image:url(http://i.ftimg.net/picture/2/000031292_piclink_24_24.jpg)">QQ空间</a></li>
-<li class="sns"><a target=_blank href="http://blog.sina.com.cn/u/1233314994" style="background-image:url(http://i.ftimg.net/picture/5/000031325_piclink_24_24.jpg)">新浪博客</a></li>
-<li class="sns"><a target=_blank href="http://ftchinese.blog.sohu.com" style="background-image:url(http://i.ftimg.net/picture/6/000031326_piclink_24_24.jpg)">搜狐博客</a></li>
-<li class="sns"><a target=_blank href="http://blog.163.com/ft_chinese" style="background-image:url(http://i.ftimg.net/picture/9/000031329_piclink_24_24.jpg)">网易博客</a></li>
-<li class="sns"><a target=_blank href="http://page.renren.com/600099109?checked=true" style="background-image:url(http://i.ftimg.net/picture/3/000031293_piclink_24_24.jpg)">人人网</a></li>
-<li class="sns"><a target=_blank href="https://www.facebook.com/ft.chinese" style="background-image:url(http://i.ftimg.net/picture/1/000031321_piclink_24_24.jpg)">FaceBook</a></li>
-<li class="sns"><a target=_blank href="https://twitter.com/FTChinese" style="background-image:url(http://i.ftimg.net/picture/7/000031297_piclink_24_24.jpg)">Twitter</a></li>
-<li class="sns last-child"><a target=_blank href="http://plus.google.com/106789556715679180983" style="background-image:url(http://i.ftimg.net/picture/2/000031322_piclink_24_24.jpg)">Google+</a></li>
-</ul>
-</li></ul>
-</li>
-<li class="china nav"><a href="">中国</a></li>
-<li class="world nav"><a href="">全球</a></li>
-<li class="economy nav"><a href="">经济</a></li>
-<li class="markets nav"><a href="">金融市场</a></li>
-<li class="business nav"><a href="">商业</a></li>
-<li class="opinion nav"><a href="">观点</a></li>
-<li class="management nav"><a href="">管理</a></li>
-<li class="lifestyle nav"><a href="">生活时尚</a></li>
-<li class="video nav"><a href="">视频</a></li>
-</ul>
-<div class="nav-right"><div></div></div>
-</div>
-<div class="nav-bottom"></div>
-</nav></div><div class="banner-placeholder">
+<div class="banner-placeholder">
 <div class="banner-container">
 <div class="banner-inner">
 <div class="banner-content">
@@ -288,7 +36,7 @@ stickyAdsPrepare();
 </div></div>
 <div class="list-container"><div class="list-inner"><h2 class="list-title">
 <a class="list-link" href="/tag/2016中国两会">2016中国两会</a>
-<a class="sponsor-link" target=_blank href="http://www.ibm.com/"><figure class="loading sponsor" data-url="http://i.ftimg.net/picture/8/000059318_piclink.jpg"></figure></a>
+<a class="sponsor-link" target="_blank" href="http://www.ibm.com/"><figure class="loading sponsor" data-url="http://i.ftimg.net/picture/8/000059318_piclink.jpg"></figure></a>
 </h2>
 <div class="items">
 
@@ -300,7 +48,7 @@ stickyAdsPrepare();
 <div class=" MT PT ST"></div>
 <div class="item-container XL4 L4 M12 M-half S6 P12 P-half has-image"><div class="item-inner">
 <h2 class="item-headline"><a target="_blank" href="/story/001066644">中国货币与股市运行相关性趋弱</a></h2>
-<a class="image" target="_blank" href="/story/001066644"><figure class="loading" data-url="http://i.ftimg.net/picture/5/000058435_piclink.jpg"></figure></a><div class="item-lead">上海证券胡月晓：当前，中国货币环境使得社会整体资产泡沫水平过高，而且分化严重。因此，���国A股市场的调整压力并非来自货币增速的回落。</div>
+<a class="image" target="_blank" href="/story/001066644"><figure class="loading" data-url="http://i.ftimg.net/picture/5/000058435_piclink.jpg"></figure></a><div class="item-lead">上海证券胡月晓：当前，中国货币环境使得社会整体资产泡沫水平过高，而且分化严重。因此，中国A股市场的调整压力并非来自货币增速的回落。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" MT PT"></div>
@@ -422,24 +170,24 @@ stickyAdsPrepare();
 <h2 class="list-title"><a href="/channel/stream.html">互动与图辑</a></h2>
 <!---->
 <div class="item-container first"><div class="item-inner">
-<a class="image" href="/interactive/6451" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/9/000059949_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/interactive/6451" target=_blank>【速读】任天堂:不用马里奥兄弟，用实力</a></h2>
+<a class="image" href="/interactive/6451" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/9/000059949_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/interactive/6451" target="_blank">【速读】任天堂:不用马里奥兄弟，用实力</a></h2>
 </div></div>
 <div class="item-container"><div class="item-inner">
-<a class="image" href="/interactive/4438" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/4/000058414_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/interactive/4438" target=_blank>【小测】测测你的新闻IQ</a></h2>
+<a class="image" href="/interactive/4438" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/4/000058414_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/interactive/4438" target="_blank">【小测】测测你的新闻IQ</a></h2>
 </div></div>
 <div class="item-container"><div class="item-inner">
-<a class="image" href="/photonews/993" target=_blank><figure class="loading" data-url="http://i.ftimg.net/photonews/2016/03/56f227286d6fe4.35136642.jpg"></figure></a>
-<h2 class="item-headline"><a href="/photonews/993" target=_blank>【图辑】布鲁塞尔恐袭 现场画面曝光</a></h2>
+<a class="image" href="/photonews/993" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/photonews/2016/03/56f227286d6fe4.35136642.jpg"></figure></a>
+<h2 class="item-headline"><a href="/photonews/993" target="_blank">【图辑】布鲁塞尔恐袭 现场画面曝光</a></h2>
 </div></div>
 <div class="item-container"><div class="item-inner">
-<a class="image" href="/interactive/6442" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/9/000059909_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/interactive/6442" target=_blank>【速读】运动不要多喝水？</a></h2>
+<a class="image" href="/interactive/6442" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/9/000059909_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/interactive/6442" target="_blank">【速读】运动不要多喝水？</a></h2>
 </div></div>
 <div class="item-container"><div class="item-inner">
-<a class="image" href="/photonews/992" target=_blank><figure class="loading" data-url="http://i.ftimg.net/photonews/2016/03/56f0d636a22400.06748587.jpg"></figure></a>
-<h2 class="item-headline"><a href="/photonews/992" target=_blank>【图辑】直击苹果春季发布会</a></h2>
+<a class="image" href="/photonews/992" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/photonews/2016/03/56f0d636a22400.06748587.jpg"></figure></a>
+<h2 class="item-headline"><a href="/photonews/992" target="_blank">【图辑】直击苹果春季发布会</a></h2>
 </div></div>
 <!---->
 </div>
@@ -449,8 +197,8 @@ stickyAdsPrepare();
 <div class="vidoes P-hide">
 <h2 class="list-title"><a href="/m/marketing/intelligence.html">FT研究院</a></h2>
 <div class="item-container first"><div class="item-inner">
-<a class="image" href="/interactive/6440" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/6/000059896_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/interactive/6440" target=_blank>一、二线房产市场在2月又有新变化！</a></h2>
+<a class="image" href="/interactive/6440" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/6/000059896_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/interactive/6440" target="_blank">一、二线房产市场在2月又有新变化！</a></h2>
 </div></div>
 <div id="three-video-part" class="triplet-container">
 <div id="three-video-content">
@@ -482,73 +230,73 @@ stickyAdsPrepare();
 <div class="items">
 
 <div class="item-container XL3 L4 M4 S6 P12 has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/生活时尚">生活时尚</a></div><a target="_blank" href="/story/001066551">什么是同性恋电影成功的秘诀？</a></h2>
-<a class="image" target="_blank" href="/story/001066551"><figure class="loading" data-url="http://i.ftimg.net/picture/6/000059646_piclink.jpg"></figure></a><div class="item-lead">上海社科院陈亚亚：西方同性恋电影成功秘诀是不强调同性恋异���恋的差异，这样既讨好观众，又促进同性恋社群的发展。商业化让同性恋电影挑战性减弱。</div>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/生活时尚">生活时尚</a></div><a target="_blank" href="/story/001066551">什么是同性恋电影成功的秘诀？</a></h2>
+<a class="image" target="_blank" href="/story/001066551"><figure class="loading" data-url="http://i.ftimg.net/picture/6/000059646_piclink.jpg"></figure></a><div class="item-lead">上海社科院陈亚亚：西方同性恋电影成功秘诀是不强调同性恋异性恋的差异，这样既讨好观众，又促进同性恋社群的发展。商业化让同性恋电影挑战性减弱。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/生活时尚">生活时尚</a></div><a target="_blank" href="/story/001066626">备受关注的港片《十年》</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/生活时尚">生活时尚</a></div><a target="_blank" href="/story/001066626">备受关注的港片《十年》</a></h2>
 <a class="image" target="_blank" href="/story/001066626"><figure class="loading" data-url="http://i.ftimg.net/picture/3/000059643_piclink.jpg"></figure></a><div class="item-lead">林喜儿：这部由5位香港年轻导演各自执导的5个短片组成的小成本政治题材电影，虽然只在戏院放映，却引爆香港，取得六百万港元票房，并入选金像奖。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" ST PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/特朗普">特朗普</a></div><a target="_blank" href="/story/001066650">特朗普并非美国“特产”</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/特朗普">特朗普</a></div><a target="_blank" href="/story/001066650">特朗普并非美国“特产”</a></h2>
 <a class="image" target="_blank" href="/story/001066650"><figure class="loading" data-url="http://i.ftimg.net/picture/1/000059641_piclink.jpg"></figure></a><div class="item-lead">FT专栏作家斯蒂芬斯：特朗普是结果，而非原因，他是代表美欧政治反叛的面孔。在全球很多发达民主国家，政治状况早在他加入共和党初选之前就变味了。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" LT MT PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/虚拟现实">虚拟现实</a></div><a target="_blank" href="/story/001066653">虚拟现实将开辟巨大市场</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/虚拟现实">虚拟现实</a></div><a target="_blank" href="/story/001066653">虚拟现实将开辟巨大市场</a></h2>
 <a class="image" target="_blank" href="/story/001066653"><figure class="loading" data-url="http://i.ftimg.net/picture/9/000059649_piclink.jpg"></figure></a><div class="item-lead">FT创新主编桑希尔：高盛分析师提出，VR可能像个人电脑那样成为改变游戏规则的重要产品，而高德纳的研究似乎表明，VR有望在未来5至10年大规模普及。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class="XLT ST PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/职场">职场</a></div><a target="_blank" href="/story/001066632">任务清单不如成就清单</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/职场">职场</a></div><a target="_blank" href="/story/001066632">任务清单不如成就清单</a></h2>
 <a class="image" target="_blank" href="/story/001066632"><figure class="loading" data-url="http://i.ftimg.net/picture/3/000059573_piclink.jpg"></figure></a><div class="item-lead">新书《Brainhack》的作者帕维特表示，待办清单往往变成“未完成”清单，让你备感压力和消沉。他建议列一个“已完成”清单，记录你取得的最重要成就。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/地铁">地铁</a></div><a target="_blank" href="/story/001066634">陈旧的纽约地铁信号系统</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/地铁">地铁</a></div><a target="_blank" href="/story/001066634">陈旧的纽约地铁信号系统</a></h2>
 <a class="image" target="_blank" href="/story/001066634"><figure class="loading" data-url="http://i.ftimg.net/picture/0/000059560_piclink.jpg"></figure></a><div class="item-lead">纽约地铁古旧的信号系统虽仍安全可靠，但越来越难维护，同时也限制了高峰期的最大运力。纽约地铁24小时运营，对新信号系统的安装构成挑战。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" LT MT ST PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/智库">智库</a></div><a target="_blank" href="/story/001066628">中国需要什么样的智库？</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/智库">智库</a></div><a target="_blank" href="/story/001066628">中国需要什么样的智库？</a></h2>
 <a class="image" target="_blank" href="/story/001066628"><figure class="loading" data-url="http://i.ftimg.net/picture/4/000059574_piclink.jpg"></figure></a><div class="item-lead">天则经济研究所王军：中国智库改革可先从去行政化入手，推动其逐步走向独立，尤其是精神上的自由。此外，政府智库还应服务于社会，面向公众，实现开放式管理。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/一带一路">一带一路</a></div><a target="_blank" href="/story/001066620">“一带一路”应借鉴交互式金融传播</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/一带一路">一带一路</a></div><a target="_blank" href="/story/001066620">“一带一路”应借鉴交互式金融传播</a></h2>
 <a class="image" target="_blank" href="/story/001066620"><figure class="loading" data-url="http://i.ftimg.net/picture/0/000059570_piclink.jpg"></figure></a><div class="item-lead">智谷研究院首席经济学家梁海明：“一带一路”倡议提出两年多以来，沿线国家的质疑有所削减，转为更加关注该倡议能给他们带来哪些经济上的实惠。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class="XLT ST PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/伊朗">伊朗</a></div><a target="_blank" href="/story/001066633">伊朗银行业困境令中国却步</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/伊朗">伊朗</a></div><a target="_blank" href="/story/001066633">伊朗银行业困境令中国却步</a></h2>
 <a class="image" target="_blank" href="/story/001066633"><figure class="loading" data-url="http://i.ftimg.net/picture/3/000059563_piclink.jpg"></figure></a><div class="item-lead">Kleiman International Consultants高级合伙人克莱曼：即使对伊朗的制裁已经放松，伊朗金融体系仍深处困境，这使中国在与伊朗加深金融合作方面犹豫不决。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" LT MT PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/职场">职场</a></div><a target="_blank" href="/story/001066600">别想靠一封邮件留住人才</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/职场">职场</a></div><a target="_blank" href="/story/001066600">别想靠一封邮件留住人才</a></h2>
 <a class="image" target="_blank" href="/story/001066600"><figure class="loading" data-url="http://i.ftimg.net/picture/8/000059528_piclink.jpg"></figure></a><div class="item-lead">FT专栏作家凯拉韦：想要劝说年轻下属放弃跳槽，不能指望一封群发邮件就能起效。老板们应该单独找到看好的下属，喝杯咖啡，加薪留住他们。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" ST PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/证券交易所">证券交易所</a></div><a target="_blank" href="/story/001066602">证交所的消亡与重生</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/证券交易所">证券交易所</a></div><a target="_blank" href="/story/001066602">证交所的消亡与重生</a></h2>
 <a class="image" target="_blank" href="/story/001066602"><figure class="loading" data-url="http://i.ftimg.net/picture/3/000059523_piclink.jpg"></figure></a><div class="item-lead">FT专栏作家加普：对于伦敦证交所近年为何身价飙升，在其名称中是找不到线索的。真正的关键在于转型。如今，该交易所的主营业务已不再是股票交易。</div>
 <div class="item-bottom"></div>
 </div></div>
 <div class=" PT"></div>
 <div class="item-container XL3 L4 M4 S6 P12 P-half has-image"><div class="item-inner">
-<h2 class="item-headline"><div class=item-tag><a href="/tag/科技">科技</a></div><a target="_blank" href="/story/001066610">数字时代的“双城记”</a></h2>
+<h2 class="item-headline"><div class="item-tag"><a href="/tag/科技">科技</a></div><a target="_blank" href="/story/001066610">数字时代的“双城记”</a></h2>
 <a class="image" target="_blank" href="/story/001066610"><figure class="loading" data-url="http://i.ftimg.net/picture/0/000059530_piclink.jpg"></figure></a><div class="item-lead">FT创新主编桑希尔：如今，美国西海岸企业家的乐观与东海岸政客的悲观形成鲜明对比。从隐喻意义上说，这种反差在其他许多国家也同样存在。</div>
 <div class="item-bottom"></div>
 </div></div>
@@ -573,7 +321,7 @@ stickyAdsPrepare();
 <a class="list-link" href="/channel/stream.html">视频</a>
 </h2>
 <div class="items">
-<div class="item-inner video-package-inner"><div class="image"><figure id="video-package-play" class="loading-video" data-vid="1856"></figure></div><div class="video-package-title"><a href="/video/1856" target=_blank>假如日本机器人被用于军事</a></div></div>
+<div class="item-inner video-package-inner"><div class="image"><figure id="video-package-play" class="loading-video" data-vid="1856"></figure></div><div class="video-package-title"><a href="/video/1856" target="_blank">假如日本机器人被用于军事</a></div></div>
 
 <div class="item-container XL2 L4 M4 S4 P4 on     has-image"><div class="item-inner">
 <h2 class="item-headline"><a target="_blank" href="/video/1856">假如日本机器人被用于军事</a></h2>
@@ -648,7 +396,7 @@ stickyAdsPrepare();
 
 <div class="item-container side-by-side first     has-image"><div class="item-inner">
 <h2 class="item-headline"><a target="_blank" href="/story/001066272">刘士余能带来“牛市雨”？</a></h2>
-<a class="image" target="_blank" href="/story/001066272"><figure class="loading" data-url="http://i.ftimg.net/picture/0/000058860_piclink.jpg"></figure></a><div class="item-lead">获得任命不到48小时后，中国证券监管部门的新领导刘士余已经感受到投资者对A股市场反弹的期许。人们在网上给他取了一个同他的名字谐音的外号：“���市雨”。</div>
+<a class="image" target="_blank" href="/story/001066272"><figure class="loading" data-url="http://i.ftimg.net/picture/0/000058860_piclink.jpg"></figure></a><div class="item-lead">获得任命不到48小时后，中国证券监管部门的新领导刘士余已经感受到投资者对A股市场反弹的期许。人们在网上给他取了一个同他的名字谐音的外号：“牛市雨”。</div>
 <div class="item-bottom"></div>
 </div></div>
 
@@ -904,29 +652,29 @@ stickyAdsPrepare();
 
 <div class="item-container XL3 L3 M3 S6 P6 headline-only">
 <div class="item-inner">
-<a class="image" href="/tag/与FT共进午餐" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/7/000059087_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/tag/与FT共进午餐" target=_blank>与FT共进午餐</a></h2>
+<a class="image" href="/tag/与FT共进午餐" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/7/000059087_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/tag/与FT共进午餐" target="_blank">与FT共进午餐</a></h2>
 </div>
 </div>
 
 <div class="item-container XL3 L3 M3 S6 P6 headline-only">
 <div class="item-inner">
-<a class="image" href="/tag/2016达沃斯" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/3/000059083_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/tag/2016达沃斯" target=_blank>2016达沃斯</a></h2>
+<a class="image" href="/tag/2016达沃斯" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/3/000059083_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/tag/2016达沃斯" target="_blank">2016达沃斯</a></h2>
 </div>
 </div>
 <div class=" ST PT"></div>
 <div class="item-container XL3 L3 M3 S6 P6 headline-only">
 <div class="item-inner">
-<a class="image" href="/tag/奢华水上" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/4/000059084_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/tag/奢华水上" target=_blank>奢华水上</a></h2>
+<a class="image" href="/tag/奢华水上" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/4/000059084_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/tag/奢华水上" target="_blank">奢华水上</a></h2>
 </div>
 </div>
 
 <div class="item-container XL3 L3 M3 S6 P6 headline-only">
 <div class="item-inner">
-<a class="image" href="/tag/礼待天下" target=_blank><figure class="loading" data-url="http://i.ftimg.net/picture/5/000059085_piclink.jpg"></figure></a>
-<h2 class="item-headline"><a href="/tag/礼待天下" target=_blank>礼待天下</a></h2>
+<a class="image" href="/tag/礼待天下" target="_blank"><figure class="loading" data-url="http://i.ftimg.net/picture/5/000059085_piclink.jpg"></figure></a>
+<h2 class="item-headline"><a href="/tag/礼待天下" target="_blank">礼待天下</a></h2>
 </div>
 </div>
 <div class="clearfloat"></div>
@@ -983,45 +731,4 @@ stickyAdsPrepare();
 </div></div><div class="clearfloat block-bottom"></div>
 </div></div>
 <div class="clearfloat"></div>
-</div></div><div class="footer-container"><div class="footer-inner">
-<div>
-<a href="/m/corp/aboutus.html">关于我们</a>
-<a href="/jobs/?from=ft">加入我们</a>
-<a href="/m/corp/faq.html">问题回馈</a>
-<a href="/m/corp/contact.html">联系方式</a>
-<a href="/m/corp/partner.html">合作伙伴</a>
-<a href="/m/corp/service.html">服务条款</a>
-<a href="/m/corp/sales.html">广告业务 </a>
-<a href="/m/corp/copyright.html">版权声明</a>
-<a href="/m/marketing/ftc.html">最新动态</a>
-</div>
-<p>
-<span class="copyright"><b>© The Financial Times Ltd 2016</b></span> 
-<span><acronym title="Financial Times">FT</acronym> and 'Financial Times' are trademarks of The Financial Times Ltd.</span>
-</p>
-</div></div><div class="app-download-container">
-<a href="http://app.ftchinese.com/download.html?utm_source=marketing&utm_medium=campaign&utm_campaign=QRCODE02" target="_blank">
-<div>FT中文网客户端</div>
-<figure class="loading" data-url="http://s.ftimg.net/img/qr/qr90-2.png"></figure>
-<div>点击或扫描下载</div>
-</a>
-</div>
-<div class="app-download-container wechat">
-<a href="#" target="_blank">
-<div>FT中文网微信</div>
-<figure class="loading" data-url="http://i.ftimg.net/picture/4/000059334_piclink.jpg"></figure>
-<div>扫描关注</div>
-</a>
-</div></body>
-
-<!--[if lte IE 8]>
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-<![endif]-->
-
-<!-- build:js scripts/main.js -->
-<script type="text/javascript" src="../bower_components/dom-delegate/lib/delegate.js"></script>
-<script type="text/javascript" src="scripts/main.js"></script>
-<!-- endbuild -->
-
-</html>
-
+</div></div>
