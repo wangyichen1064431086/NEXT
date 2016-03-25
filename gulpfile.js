@@ -41,7 +41,7 @@ gulp.task(function mustache() {
 });
 
 gulp.task('htmllint', function() {
-  gulp.src('views/index.mustache')
+  gulp.src('app/index.html')
     .pipe($.html5Lint());
 });
 

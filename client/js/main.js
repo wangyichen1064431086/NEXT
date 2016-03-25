@@ -19,7 +19,7 @@
   var isRetinaDevice = (window.devicePixelRatio > 1);
 
 
-  function findTop(obj) {
+/*  function findTop(obj) {
     var curtop = 0;
     if (obj.offsetParent) {
       do {
@@ -36,7 +36,7 @@
     g = d.getElementsByTagName('body')[0],
     y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     return y;
-  }
+  }*/
 
   function stickyAdsPrepare() {
     if (typeof stickyAds === 'object' && stickyAds.length>0) {
@@ -233,13 +233,21 @@
   try {
     delegate.on('click', '.video-package .XL2 a.image', function(){
       var link = hostForVideo + this.getAttribute('href');
+
       var videoPackage = this.parentNode.parentNode.parentNode;
+
       var videoEle = videoPackage.querySelector('#video-package-play');
+
       var videoWidth = videoEle.offsetWidth;
+
       var videoHeight = videoEle.offsetHeight;
+
       var thisItemEle = this.parentNode.parentNode;
+
       var thisHeadline = thisItemEle.querySelector('.item-headline a').innerHTML;
+
       var allVideos = this.parentNode.parentNode.parentNode.querySelectorAll('.video-package .XL2');
+
       for (var i=0; i<allVideos.length; i++) {
         var thisClassName = allVideos[i].className;
         if (thisClassName.indexOf(' on')>=0) {
@@ -247,10 +255,15 @@
           allVideos[i].className = thisClassName; 
         }
       }
+
       this.parentNode.parentNode.className += ' on';
+
       videoEle.querySelector('iframe').src = link  +'?i=2&k=1&w='+videoWidth+'&h='+videoHeight+'&autostart=true';
+
       videoPackage.querySelector('.video-package-title a').innerHTML = thisHeadline;
+
       videoPackage.querySelector('.video-package-title a').href = link;
+      
       return false;
     });
   } catch (ignore) {
