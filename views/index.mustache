@@ -52,6 +52,9 @@
           document.createElement('footer');
       </script>
       <script src="bower_components/svg4everybody/dist/svg4everybody.legacy.min.js"></script>
+      <script>
+svg4everybody();
+      </script>
   <![endif]-->
   <link rel="stylesheet" type="text/css" href="styles/main.css">
   <!-- build:css styles/ie-XL.css -->
@@ -81,7 +84,7 @@
 <body>
 {{> frontpage/o-header}}
 
-{{> frontpage/main}}
+{{> frontpage/latest}}
                     
 
 {{> frontpage/o-footer}}        
@@ -94,13 +97,10 @@
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 <![endif]-->
 
-<script src="scripts/bundle.js"></script>
-
-<script src="https://wzrd.in/standalone/dom-delegate@latest"></script>
-
 <!-- build:js scripts/main.js -->
-<script type="text/javascript" src="scripts/main.js"></script>
+<script src="scripts/bundle.js"></script>
 <!-- endbuild -->
+
 
 </body>
 </html>

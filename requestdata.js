@@ -17,7 +17,7 @@ request(url, function(error, response, body) {
     $('.app-download-container').remove();
     const data = $('body').html();
 
-    fs.writeFile('views/frontpage/main.mustache', data, function(err) {
+    fs.writeFile('views/frontpage/latest.mustache', data, function(err) {
     	if (err) {console.log(err)}
     });
   }

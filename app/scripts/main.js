@@ -1,4 +1,6 @@
 /* jshint devel:true */
+const Delegate = require('dom-delegate');
+
   var containerTop = [];
   var mainHeight = [];
   var sideHeight = [];

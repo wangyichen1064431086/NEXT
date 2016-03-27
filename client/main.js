@@ -6,7 +6,6 @@ const oSticky = Header.sticky;
 const oMenu = Header.menu;
 
 const util = require('./js/util');
-const LazyLoader = require('./js/lazy-loader');
 
 
 const headerEl = document.querySelector('.o-header');
@@ -23,4 +22,7 @@ if (currentLayout !== 'S') {
 	new oSticky(headerSecondaryEl, headerSecondaryElOffset.y);
 }
 
-new oMenu(headerNavEl, 'data/sub-nav.json');
+const menu = new oMenu(headerNavEl, 'data/sub-nav.json');
+console.log(menu);
+
+require('../app/scripts/main.js')

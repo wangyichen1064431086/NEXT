@@ -68,7 +68,7 @@
             </li>
   {{!-- <li> tags's aria-selected="true | false" indicates whether the user is reading the current channel or not. Use this attribute to hightlight the current navigation item. It should be decided on the server when sending the page. JSON file should include this field for demo purpose. --}}
             {{ #navSections }}
-            <li class="nav-section" aria-selected="{{selected}}" data-channel="{{channel}}">
+            <li class="nav-section" aria-selected="{{selected}}" data-section="{{section}}">
   {{!-- We have duplicate entry for the primary navigation item. On desktop it has to be a link so that when clicked, it could jump to the target url. But on mobile, when clicked, it should show sub-menu rather than jump away. --}}
               <button class="nav-section-head mobile" data-o-header-selectable>{{name}}</button>
 

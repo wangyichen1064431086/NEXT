@@ -21,13 +21,13 @@ img {
 	max-width:100%;
 }
 a {
-    color: $darkGreen;
+    //color: $darkGreen;
     //border-bottom: 1px dotted #27757b;
     text-decoration: none;
-    &:hover, &:active {
-		color: $darkGrey;
-		//border-color: transparent;
-	}
+ //     &:hover, &:active {
+	// 	color: $darkGrey;
+	// 	//border-color: transparent;
+	// } 
 }
 ul,li{
 	list-style-position:outside;

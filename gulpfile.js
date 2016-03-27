@@ -19,7 +19,7 @@ const minify = require('html-minifier').minify;
 gulp.task(function mustache() {
   const DEST = '.tmp';
 
-  const headerData = JSON.parse(fs.readFileSync('model/header-data2.json'));
+  const headerData = JSON.parse(fs.readFileSync('model/nav-main.json'));
 
   return gulp.src('views/index.mustache')
     .pipe($.changed(DEST))
@@ -153,7 +153,7 @@ gulp.task('data', function() {
 });
 
 gulp.task('copyjs', function() {
-  return gulp.src('client/js/*.js')
+  return gulp.src('app/scripts/ad.js', 'app/scripts/key.js')
   .pipe(gulp.dest('.tmp/scripts'));
 });
 
@@ -165,11 +165,11 @@ gulp.task('copym', function() {
 
 gulp.task('serve', 
   gulp.parallel(
-    'mustache', 'styles', 'scripts', 'data', 'copyjs',
+    'mustache', 'styles', 'scripts', 'data', 'copyjs', 'copym',
     function serve() {
     browserSync.init({
       server: {
-        baseDir: ['.tmp'],
+        baseDir: ['.tmp', 'app'],
         routes: { 
           '/bower_components': 'bower_components'
         }
@@ -177,7 +177,8 @@ gulp.task('serve',
     });
 
     gulp.watch(['views/**/*.mustache', 'model/*.json'], gulp.parallel('mustache'));
-
+    gulp.watch('app/m/**/*.html', gulp.parallel('copym'));
+    gulp.watch(['app/scripts/*.js'], gulp.parallel('copyjs'));
     gulp.watch(['client/**/*.scss'], gulp.parallel('styles'));
   })
 );
@@ -218,6 +219,7 @@ gulp.task('extras', function () {
   return gulp.src([
     'app/*.*',
     '!app/*.html',
+    '.tmp/**/*.json',
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
     dot: true
@@ -230,7 +232,7 @@ gulp.task('ad', function () {
 });
 
 
-gulp.task('build', gulp.parallel('html', 'images',  'extras', 'ad'));
+gulp.task('build', gulp.series('styles', 'js', gulp.parallel('html', 'images',  'extras', 'ad')));
 
 const http = require('http');
 const url = require('url');

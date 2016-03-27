@@ -1,5 +1,5 @@
 @import "o-grid/main";
-
+@import "scss/common";
 body {
 	margin: 0;
 	padding: 0;
@@ -16,7 +16,6 @@ body {
 $o-header-is-silent: false;
 @import "ftc-header/main";
 
-@import "scss/common";
 @import "scss/banner";
 @import "scss/block";
 @import "scss/section-apple";

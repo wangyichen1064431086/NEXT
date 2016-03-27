@@ -55,7 +55,7 @@
   //       'stickyHeight': stickyHeight
   //   }
 
-  function stickyBottomPrepare() {
+/*  function stickyBottomPrepare() {
     gNavOffsetY = findTop(document.getElementById('nav-place-holder'));
     bodyHeight = getBodyHeight();
     w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -70,9 +70,9 @@
         //sectionsWithSide[i].querySelector('.side-inner').style.backgroundColor = 'grey';
       }
     }
-  }
+  }*/
 
-  function stickyBottom() {
+/*  function stickyBottom() {
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
     if (scrollTop >= gNavOffsetY) {
       if (htmlClass.indexOf(' is-sticky')<0) {
@@ -136,7 +136,7 @@
       
     }
 
-  }
+  }*/
 
   try {
     delegate = new Delegate(document.body);
@@ -145,7 +145,7 @@
   }
 
   // listent to scrolling events
-  gNavOffsetY = findTop(document.getElementById('nav-place-holder'));
+/*  gNavOffsetY = findTop(document.getElementById('nav-place-holder'));
   if (gNavOffsetY > 30 && w > 490) {
     try {
       stickyBottomPrepare();
@@ -173,10 +173,10 @@
   // SVG is default, no-svg is exception
   if (typeof SVGRect === 'undefined') {
     document.documentElement.className += ' no-svg';
-  }
+  }*/
 
   // load responsive images
-  var figures = document.querySelectorAll('figure.loading');
+/*  var figures = document.querySelectorAll('figure.loading');
   for (var i=0; i<figures.length; i++) {
     var thisFigure = figures[i];
     var imageWidth = thisFigure.offsetWidth;
@@ -200,10 +200,10 @@
       thisFigure.innerHTML = '<img src="' + imageUrl + '">';
       thisFigure.className = '';
     }
-  }
+  }*/
 
   // load responsive videos
-  var videos = document.querySelectorAll('figure.loading-video');
+/*  var videos = document.querySelectorAll('figure.loading-video');
   var hostForVideo = '';
   if (window.location.hostname === 'localhost' || window.location.hostname.indexOf('192.168') === 0 || window.location.hostname.indexOf('10.113') === 0 || window.location.hostname.indexOf('127.0') === 0) {
     hostForVideo = 'http://www.ftchinese.com';
@@ -218,7 +218,7 @@
       thisVideo.innerHTML = '<iframe name="video-frame" id="video-frame" style="width:100%;height:100%;position:absolute;" src="' + hostForVideo + '/video/'+ videoId +'?i=2&k=1&w='+videoWidth+'&h='+videoHeight+'&autostart=false" scrolling="no" frameborder="0" allowfullscreen=true></iframe>';
       thisFigure.className = '';
     }
-  }
+  }*/
 
   //A cool trick to handle images that fail to load:
   try {

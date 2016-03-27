@@ -40,13 +40,13 @@
     {
       "name": "首页",
       "url": "/",
-      "channel": "home"
+      "section": "home"
     },  
     {
       "name": "中国",
       "url": "",
       "selected": true,
-      "channel": "china",
+      "section": "china",
       "navSectionItems": [
         {
           "mobile": true,
@@ -87,49 +87,49 @@
       "name": "全球",
       "url": "",
       "selected": "",
-      "channel": "global"
+      "section": "global"
     },
     {
       "name": "经济",
       "url": "",
       "selected": "",
-      "channel": "economy"
+      "section": "economy"
     },
     {
       "name": "金融市场",
       "url": "",
       "selected": "",
-      "channel": "markets"
+      "section": "markets"
     },
     {
       "name": "商业",
       "url": "",
       "selected": "",
-      "channel": "companies"
+      "section": "companies"
     },
     {
       "name": "观点",
       "url": "",
       "selected": "",
-      "channel": "opinion"
+      "section": "opinion"
     },
     {
       "name": "管理",
       "url": "",
       "selected": "",
-      "channel": "management"
+      "section": "management"
     },
     {
       "name": "生活时尚",
       "url": "",
       "selected": "",
-      "channel": "life_arts"
+      "section": "life_arts"
     },
     {
       "name": "视频",
       "url": "",
       "selected": "",
-      "channel": "videos"
+      "section": "videos"
     }
   ],
   "mobileNavItems": [
