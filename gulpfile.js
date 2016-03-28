@@ -1,5 +1,10 @@
 const fs = require('fs');
+const http = require('http');
+const url = require('url');
+const request = require('request');
+const cheerio = require('cheerio');
 
+const merge = require('merge-stream');
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')();
 
@@ -16,7 +21,7 @@ const minify = require('html-minifier').minify;
 
 
 // Use template file to generate static html
-gulp.task(function mustache() {
+gulp.task('mustache', function() {
   const DEST = '.tmp';
 
   const headerData = JSON.parse(fs.readFileSync('model/nav-main.json'));
@@ -162,10 +167,34 @@ gulp.task('copym', function() {
     .pipe(gulp.dest('.tmp/m'));
 });
 
+gulp.task('requestdata', function(done) {
+  const dateStamp = new Date().getTime();
+  const url = 'http://www.ftchinese.com/m/corp/p0.html?' + dateStamp;
+
+  request(url, function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      const $ = cheerio.load(body, {
+        decodeEntities: false
+      });
+      $('#roadblock').remove();
+      $('.header-container').remove();
+      $('.nav-place-holder').remove();
+      $('.footer-container').remove();
+      $('.app-download-container').remove();
+      const data = $('body').html();
+
+      fs.writeFile('views/frontpage/latest.mustache', data, function(err) {
+        if (err) {return done(err)}
+        done();
+      });
+    }
+  });
+
+});
 
 gulp.task('serve', 
-  gulp.parallel(
-    'mustache', 'styles', 'scripts', 'data', 'copyjs', 'copym',
+  gulp.series(
+  'mustache', 'styles', 'scripts', 'data', 'copyjs', 'copym',
     function serve() {
     browserSync.init({
       server: {
@@ -184,7 +213,7 @@ gulp.task('serve',
 );
 
 gulp.task('clean', function() {
-  return del(['.tmp/**']).then(()=>{
+  return del(['.tmp/**', 'dist']).then(()=>{
     console.log('Old files deleted');
   });
 });
@@ -208,10 +237,10 @@ gulp.task('html', function() {
 
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true
-    })))
+    }))
     .pipe(gulp.dest('dist/images'));
 });
 
@@ -232,136 +261,161 @@ gulp.task('ad', function () {
 });
 
 
+
+gulp.task('home', function(done) {
+  const dateStamp = new Date().getTime();
+  const url = 'http://www.ftchinese.com/m/corp/p0.html?' + dateStamp;
+
+  request(url, function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var $ = cheerio.load(body, {
+        decodeEntities: false
+      });
+
+      const data = $('body').html();
+      const index = fs.readFileSync('app/index.html', 'utf8');
+      $ = cheerio.load(index,  {
+        decodeEntities: false
+      });
+      $('body').replaceWith(data);
+      fs.writeFile('world.html', $.html(), function(err) {
+        if (err) {done(err)}
+      });
+      done();
+    }
+  });
+});
+
 gulp.task('build', gulp.series('styles', 'js', gulp.parallel('html', 'images',  'extras', 'ad')));
 
-const http = require('http');
-const url = require('url');
-const request = require('request');
+gulp.task('datestamp', function(done) {
+  const dateStamp = new Date().getTime();
+  const fileName = '../dev_www/frontend/tpl/next/timestamp/timestamp.html';
 
-gulp.task('copy', gulp.series('build', function () {
-  //var replace = require('gulp-replace');
-  //var rename = require("gulp-rename");
-  var thedatestamp = new Date().getTime();
+  fs.writeFile(fileName, dateStamp, function(err) {
+      if(err) {
+          done(err);
+      }
+      console.log(dateStamp + ' written to ' + fileName);
+      done();
+  });
+});
 
-  gulp.src('dist/styles/*.css')
+gulp.task('copy', gulp.series('build', 'datestamp' ,function () {
+
+  const cssjs = gulp.src(['dist/**/*.css', 'dist/**/*.js'])
     .pipe(gulp.dest('../dev_www/frontend/static/n'))
+    .pipe(gulp.dest('../dev_www/frontend/tpl/next'));
+
+  const style = gulp.src('dist/styles/partials/*.css')
     .pipe(gulp.dest('../dev_www/frontend/tpl/next/styles'));
 
-  gulp.src('dist/styles/partials/*.css')
-    .pipe(gulp.dest('../dev_www/frontend/tpl/next/styles'));
-
-  gulp.src('dist/scripts/*.js')
-    .pipe(gulp.dest('../dev_www/frontend/static/n'))
-    .pipe(gulp.dest('../dev_www/frontend/tpl/next/scripts'));
-
-  gulp.src('dist/m/marketing/*')
+  const market = gulp.src('dist/m/marketing/*')
     .pipe(gulp.dest('../dev_www/frontend/tpl/marketing'));
 
-  gulp.src('app/api/page/*')
+  const api = gulp.src('app/api/page/*')
     .pipe(gulp.dest('../dev_www/frontend/tpl/next/api/page'));
 
-  gulp.src('dist/**/*')
+  const pageMaker = gulp.src('dist/**/*')
     .pipe(gulp.dest('../dev_cms/pagemaker'));
 
-  gulp.src('app/api/**/*')
+  const pageMaker2 = gulp.src('app/api/**/*')
     .pipe(gulp.dest('../dev_cms/pagemaker/api'));
 
-  gulp.src('app/templates/p0.html')
+  const p0 = gulp.src('app/templates/p0.html')
     .pipe($.replace(/([\r\n])[ \t]+/g, '$1'))
     .pipe($.replace(/(\r\n)+/g, '\r\n'))
     .pipe($.replace(/(\n)+/g, '\n'))
     .pipe(gulp.dest('../dev_www/frontend/tpl/corp'));
 
-  gulp.src('app/templates/partials/**/*')
+  const partials = gulp.src('app/templates/partials/**/*')
     .pipe($.replace(/([\r\n])[ \t]+/g, '$1'))
     .pipe($.replace(/(\r\n)+/g, '\r\n'))
     .pipe($.replace(/(\n)+/g, '\n'))
     .pipe(gulp.dest('../dev_www/frontend/tpl/next/partials'));
 
-  gulp.src('app/templates/html/**/*')
+  const html = gulp.src('app/templates/html/**/*')
     .pipe($.replace(/([\r\n])[ \t]+/g, '$1'))
     .pipe($.replace(/(\r\n)+/g, '\r\n'))
     .pipe($.replace(/(\n)+/g, '\n'))
     .pipe(gulp.dest('../dev_www/frontend/tpl/next/html'));
 
-
-  var fileName = '../dev_www/frontend/tpl/next/timestamp/timestamp.html';
-  var fs = require('fs');
-  fs.writeFile(fileName, thedatestamp, function(err) {
-      if(err) {
-          return console.log(err);
-      }
-      console.log(thedatestamp);
-      console.log('writen to');
-      console.log(fileName);
-  });
+  return merge(cssjs, style, market, api, pageMaker, pageMaker2, p0, partials, html);
 }));
 
-gulp.task('story', function () {
-  var thisday = new Date();
-  var theyear = thisday.getFullYear();
-  var themonth = thisday.getMonth() + 1;
-  var theday =  thisday.getDate();
-  var thedatestamp = theyear + '-' + themonth + '-' + theday;
 
-  var urlSource = 'https://backyard.ftchinese.com/falcon.php/cmsusers/login';
 
-  var options = {
-      host: url.parse(urlSource).hostname,
-      path: url.parse(urlSource).pathname + unescape(url.parse(urlSource).search || '')
-  }
 
-  request.post({
-    url: 'https://backyard.ftchinese.com/falcon.php/cmsusers/login',
-    form: {"username":"", "password":""},
-    headers: {
-      'User-Agent': 'request'
-    }
-  }, function(error, response, body){
-    var storyapi = 'https://backyard.ftchinese.com/falcon.php/homepage/getstoryapi/' + thedatestamp;
-    //var headers = response.headers;
-    // headers['Content-Length'] = 100000;
-    // headers['User-Agent'] = 'request';
-    // headers['expires'] = 'Fri, 19 Feb 2016 08:52:00 GMT';
+// const now = new Date();
+// const year = now.getFullYear();
+// const month = now.getFullYear();
+// const date = now.getDate();
+// const dateStamp = year + '-' + month + '-' + date;
 
-    // console.log (headers);
+// gulp.task('story', function () {
 
-    var headers = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    //'Accept-Encoding':'gzip, deflate, sdch',
-    'Accept-Language':'zh-CN,zh;q=0.8,en;q=0.6',
-    'Cache-Control':'max-age=0',
-    'Connection':'keep-alive',
-    'Cookie':'FTSTAT_ok_times=22; _ga=GA1.3.637326541.1424081173; campaign=2015spring5; _gscu_2081532775=0.7.0.5%7C2483082596632ej013%7C1424859625967%7C8%7C3%7C27%7C0; __utma=65529209.637326541.1424081173.1449122460.1454643214.25; __utmz=65529209.1449122460.24.6.utmcsr=EmailNewsletter|utmccn=1D110215|utmcmd=referral; __utmv=65529209.visitor_DailyEmail; __gads=ID=cd878295be28de40:T=1454986613:S=ALNI_MbkpbmkeeFOrhk1DVu05zuKdgqPmw; SIVISITOR=Ni42NzQuOTg3MjQ2MjgyMzk4Ny4xNDU0OTg2NjE0Mzc0Li0xZDZkODE5Ng__*; ccode=1P110215; faid=97e09ef664648f4bcc02a418e06717d3; ftn_cookie_id=1455247531.176777595; PHPSESSID=f8b0d2f63c554af8a5c8ef8a79b4c4bb; _ga=GA1.2.637326541.1424081173; ftcms_uid=13; ftcms_username=oliver.zhang; ftcms_groups=editor',
-    'Host':'backyard.ftchinese.com',
-    'Upgrade-Insecure-Requests':'1',
-    //'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
-    }
+//   const urlSource = 'https://backyard.ftchinese.com/falcon.php/cmsusers/login';
 
-  /*
-      headers = {
-        'User-Agent': 'request',
-        'expires': 'Fri, 19 Feb 2016 08:52:00 GMT'
-      };
-  */
-      
-    request.get({
-        url: storyapi,
-        headers: headers
-    },function(error, response, body){
-      // The full html of the authenticated page
-      console.log(body);
+//   // var options = {
+//   //     host: url.parse(urlSource).hostname,
+//   //     path: url.parse(urlSource).pathname + unescape(url.parse(urlSource).search || '')
+//   // }
 
-      var fileName = './app/api/page/stories.json';
-      var fs = require('fs');
-      fs.writeFile(fileName, body, function(err) {
-          if(err) {
-              return console.log(err);
-          }
-          console.log(storyapi);
-          console.log('writen to');
-          console.log(fileName);
-      });
-    });
-  });
-});
+//   request.post({
+//     url: 'https://backyard.ftchinese.com/falcon.php/cmsusers/login',
+//     form: {"username":"", "password":""},
+//     headers: {
+//       'User-Agent': 'request'
+//     }
+//   }, function(error, response, body){
+//     //var storyapi = 'https://backyard.ftchinese.com/falcon.php/homepage/getstoryapi/' + thedatestamp;
+//     //var headers = response.headers;
+//     // headers['Content-Length'] = 100000;
+//     // headers['User-Agent'] = 'request';
+//     // headers['expires'] = 'Fri, 19 Feb 2016 08:52:00 GMT';
+
+//     // console.log (headers);
+
+//   /*
+//       headers = {
+//         'User-Agent': 'request',
+//         'expires': 'Fri, 19 Feb 2016 08:52:00 GMT'
+//       };
+//   */
+//   });
+// });
+
+// gulp.src('getapi', function() {
+//   const storyapi = 'https://backyard.ftchinese.com/falcon.php/homepage/getstoryapi/' + dateStamp;
+
+//   var headers = {
+//   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+//   //'Accept-Encoding':'gzip, deflate, sdch',
+//   'Accept-Language':'zh-CN,zh;q=0.8,en;q=0.6',
+//   'Cache-Control':'max-age=0',
+//   'Connection':'keep-alive',
+//   'Cookie':'FTSTAT_ok_times=22; _ga=GA1.3.637326541.1424081173; campaign=2015spring5; _gscu_2081532775=0.7.0.5%7C2483082596632ej013%7C1424859625967%7C8%7C3%7C27%7C0; __utma=65529209.637326541.1424081173.1449122460.1454643214.25; __utmz=65529209.1449122460.24.6.utmcsr=EmailNewsletter|utmccn=1D110215|utmcmd=referral; __utmv=65529209.visitor_DailyEmail; __gads=ID=cd878295be28de40:T=1454986613:S=ALNI_MbkpbmkeeFOrhk1DVu05zuKdgqPmw; SIVISITOR=Ni42NzQuOTg3MjQ2MjgyMzk4Ny4xNDU0OTg2NjE0Mzc0Li0xZDZkODE5Ng__*; ccode=1P110215; faid=97e09ef664648f4bcc02a418e06717d3; ftn_cookie_id=1455247531.176777595; PHPSESSID=f8b0d2f63c554af8a5c8ef8a79b4c4bb; _ga=GA1.2.637326541.1424081173; ftcms_uid=13; ftcms_username=oliver.zhang; ftcms_groups=editor',
+//   'Host':'backyard.ftchinese.com',
+//   'Upgrade-Insecure-Requests':'1',
+//   //'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
+//   }
+
+//   request.get({
+//       url: storyapi,
+//       headers: headers
+//   },function(error, response, body){
+//     // The full html of the authenticated page
+//     console.log(body);
+
+//     var fileName = './app/api/page/stories.json';
+
+//     fs.writeFile(fileName, body, function(err) {
+//         if(err) {
+//             return console.log(err);
+//         }
+//         console.log(storyapi);
+//         console.log('writen to');
+//         console.log(fileName);
+//     });
+//   });
+// });

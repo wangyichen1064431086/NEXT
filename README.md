@@ -21,6 +21,49 @@
 	npm uninstall gulp --save-dev 
 	npm install "gulpjs/gulp#4.0" --save-dev
 
+## How to require gulp plugins in gulpfile
+
+We use `gulp-load-plugins` to load gulp plugins, which means you do not need to explicitly write `rename = require('gulp-rename)` in you gulp file. 
+
+After you set `const $ = require('gulp-load-plugins')();`, which has already been included in the gulpfile, all modules under `node-modules` directory beginning with `gulp-` will be aumotmatically attachend to the `$` object.
+
+Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use `gulp-html-min`, write `$.htmlMin`, with hyphen replaced by `camelCase`.
+
+## Require node modules in gulpfile.
+
+1. Put all `require` statement at the beginning of the file.
+
+2. Use `const` as much as possible to enforce stricter type check.
+
+## Tasks
+- `gulp mustach` Build static html file from mustache template `view/index.mustache`. The template's json data is under `model`.
+
+- `gulp htmllint` Validate html markup.
+
+- `gulp styles` Build css from scss with `node-sass`. `client/main.scss` should be the single entry point. All other scss files should be imported into this file.
+
+- `gulp scripts` Build CommonJS style for frontend. `client/main.js` should be the single entry point. All other js files should be `require`d into this file. For js files not written in CommonJS way, simpy `require('./file-path')` without `var mymodule=` part.
+
+- `gulp js` For production build only.
+
+- `gulp lint` Lint js with `eslint`.
+
+- `gulp serve` Run a server and watch file changes.
+
+- `gulp clean` Delete `dist` and `.tmp` directries.
+
+- `gulp html` `useref` build html, css and js into `dist` directory.
+
+- `gulp requestdata` Get latest page from serve, remove `#roadblock`, `.header-container`, `.nav-place-holder`, `.footer-container` and `.app-download-container` element, and put it under `views/frontpage/` as `latest.mustache` for `views/index.mustache` to include. Run this task manually only when you want to update the body content.
+
+- `gulp home` is the previous task rewritten.
+
+- `gulp build` to build assets and copy into `dist`.
+
+- `gulp datastamp` generates `timestamp.html` file.
+
+- `gulp copy` copies files to server directory.
+
 ## Goals
 ### Design
 Redesign the www.ftchinese.com for best content display on all devices. 

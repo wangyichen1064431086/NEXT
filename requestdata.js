@@ -7,7 +7,7 @@ const url = 'http://www.ftchinese.com/m/corp/p0.html?' + dateStamp;
 
 request(url, function(error, response, body) {
   if (!error && response.statusCode == 200) {
-    $ = cheerio.load(body, {
+    const $ = cheerio.load(body, {
     	decodeEntities: false
     });
     $('#roadblock').remove();
@@ -22,3 +22,4 @@ request(url, function(error, response, body) {
     });
   }
 });
+
