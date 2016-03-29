@@ -21,6 +21,10 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 `brew cleanup` to delete downloaded cache to the latest version.
 
+### Install latest node.
+
+If you have `homebrew` installed, run `brew install node`. Otherwise go to [Node.js](https://nodejs.org/en/) to download the binary installer. The latest version as of this writing is 5.9.1.
+
 ### Show path and hidden files in Finder
 
 - Show path at the top of Finder:
