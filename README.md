@@ -89,6 +89,9 @@ Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use 
 2. Use `const` as much as possible to enforce stricter type check.
 
 ## Tasks
+
+**NOTE**: If you do not want to install `gulp 4` globally on you machine, you can run the following commands with `npm run gulp task-name`. This is use the locally installed `gulp 4` in the terminal.
+
 - `gulp mustach` Build static html file from mustache template `view/index.mustache`. The template's json data is under `model`.
 
 - `gulp htmllint` Validate html markup.
