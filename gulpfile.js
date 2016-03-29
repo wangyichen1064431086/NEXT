@@ -193,7 +193,7 @@ gulp.task('requestdata', function(done) {
 });
 
 gulp.task('serve', 
-  gulp.series(
+  gulp.parallel(
   'mustache', 'styles', 'scripts', 'data', 'copyjs', 'copym',
     function serve() {
     browserSync.init({
