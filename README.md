@@ -8,7 +8,7 @@ Before testing this branch, make sure you have read and followed the steps as sp
 
 系统设置可以参考这里Dev Guide](http://ft-interactive.github.io/setup/mac/)，或者往下读
 
-Please install [Homebrew](http://brew.sh/) on Mac and change the owner of `usr/local` to youself. Mac OS does not provide this directory by default. It is you who created this directory and you, not the computer, must have full control over it.
+Please install [Homebrew](http://brew.sh/) on Mac and change the owner of `usr/local` to youself. You should have full control over this directory.
 
 Mac上尽量安装[Homebrew](http://brew.sh/)。Homebrew会创建`usr/local`目录存放它安装的软件。这个目录不是Mac OS的，homebrew需要把这个目录的所有者设为当前用户，让它去做就好了，否则以后安装软件会有权限问题。安装完了以后看看你是不是这个目录的所有人，如果不是，就输入命令：
 
@@ -38,9 +38,11 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 If you have `homebrew` installed, run `brew install node`. Otherwise go to [Node.js](https://nodejs.org/en/) to download the binary installer. The latest version as of this writing is 5.9.1.
 
-### 安装最新版node.js
+安装最新版node.js
 
-Homebrew可以直接装node，所以不要用官方的安装包，交给homebrew。
+Homebrew可以直接装node，不要用官方的安装包。
+
+### Alternatively you can use [NVM](https://github.com/creationix/nvm).
 
 ### Show path and hidden files in Finder. Mac上在Finder中显示路径名和隐藏文件
 
@@ -157,6 +159,38 @@ npm config set python /path/to/executable/python2.7
 If `npm install` failed due to network connection, try to use taobao's npm mirror:
 ```
 npm install --registry=https://registry.npm.taobao.org
+```
+
+### NPM Permission
+
+NPM官方建议用户最好取得全局安装的node_modules目录的权限，不要每次调用都用`sudo`（如果用homebrew或者nvm的话，你应该已经拥有node相关目录的权限了）。官方文档的做法：
+
+#### Option 1: Change the permission to npm's default directory
+- Find the path to npm's directory: 
+```bash
+npm config get prefix ## For many systems, this will be /usr/local.
+```
+- Change the owner of npm's directory's to the effective name of the current user (your username)
+```
+sudo chown -R `whoami` <directory>
+```
+
+#### Option 2: Change npm's default directory to another directory
+- Make a directory for global installations:
+```
+mkdir ~/npm-global
+```
+- Configure npm to use the new directory path:
+```
+npm config set prefix '~/npm-global'
+```
+- Open or create a ~/.bash_profile file and add this line:
+```
+export PATH=~/npm-global/bin:$PATH
+```
+- Back on the command line, update your system variables:
+```
+source ~/.bash_profile
 ```
 
 ## Install gulp 4.0
