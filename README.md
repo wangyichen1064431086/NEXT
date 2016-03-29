@@ -1,25 +1,24 @@
 # FTChinese Next Project
 
-## NPM install
+## 系统设置
 
-Use taobao's npm mirror:
-```
-npm install --registry=https://registry.npm.taobao.org
-```
-
-## Machine Setup
-
-### Install `homebrew`
+### 安装`homebrew`
 
 Before testing this branch, make sure you have read and followed the steps as specified here: [Dev Guide](http://ft-interactive.github.io/setup/mac/).
 
+系统设置可以参考这里Dev Guide](http://ft-interactive.github.io/setup/mac/)，或者往下读
+
 Please install [Homebrew](http://brew.sh/) on Mac and change the owner of `usr/local` to youself. Mac OS does not provide this directory by default. It is you who created this directory and you, not the computer, must have full control over it.
+
+Mac上尽量安装[Homebrew](http://brew.sh/)。Homebrew会创建`usr/local`目录存放它安装的软件。这个目录不是Mac OS的，homebrew需要把这个目录的所有者设为当前用户，让它去做就好了，否则以后安装软件会有权限问题。安装完了以后看看你是不是这个目录的所有人，如果不是，就输入命令：
 
 ```
 sudo chown your-account-name:admin /usr/local
 ```
 
 After installed `homebrew`, you should install whatever software with `brew install`. DO NOT install software using their official binary installer unless it is not included in brew repository. Check [Brawmeister](http://braumeister.org/) to see whether the software you need is available.
+
+安装完homebrew以后，`brew install software-name`安装软件。尽量别用软件官方的安装包安装，都交给homebrew去管理。在hombrew的网站列表里可以看哪些软件可以直接用brew安装：[Brawmeister](http://braumeister.org/)。
 
 ### Use `homebrew`
 `brew update` to update `homebrew` itself.
@@ -28,11 +27,22 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 `brew cleanup` to delete downloaded cache to the latest version.
 
+### brew用法
+`brew update` 更新homebrew软件本身，这会更新brew的数据列表，它会返回最近哪些软件有了新的更新包。
+
+`brew upgrade` 有了新的更新包就用这个命令更新homebrew安装过的软件。
+
+`brew cleanup` 把缓存中homebrew下载过的软件安装包删除，只剩最新一个版本。
+
 ### Install latest node.
 
 If you have `homebrew` installed, run `brew install node`. Otherwise go to [Node.js](https://nodejs.org/en/) to download the binary installer. The latest version as of this writing is 5.9.1.
 
-### Show path and hidden files in Finder
+### 安装最新版node.js
+
+Homebrew可以直接装node，所以不要用官方的安装包，交给homebrew。
+
+### Show path and hidden files in Finder. Mac上在Finder中显示路径名和隐藏文件
 
 - Show path at the top of Finder:
 
@@ -48,7 +58,11 @@ sudo defaults write com.apple.finder AppleShowAllFiles YES
 
 ### Show full path in terminal, git branches and commit status
 
+在命令行上显示当前工作目录全称，显示git的branch和状态
+
 - Install `git-aware`:
+
+安装`git-aware`。在你的home目录下家里一个`.bash`文件夹，然后把`git-aware`克隆到这个文件夹
 
 ```
 mkdir ~/.bash
@@ -58,6 +72,8 @@ git clone git://github.com/jimeh/git-aware-prompt.git
 
 - Copy the following to the `.bash_profile` file under you home directory:
 
+让terminal知道怎么显示。第三行会修改命令行提示符前面的路径。Mac默认显示的是当前目录名，这里会改成显示全部绝对路径，不想用的可以跳过第三行。
+
 ```
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
@@ -66,11 +82,17 @@ export PS1="<\u@\h \w>\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$
 
 ### Configure `tab` equal to 2 spaces in your text editor.
 
+文本编辑器里把tab键设为等于两个空格，这是node的推荐style。
+
 See [Node Style Guide](https://github.com/felixge/node-style-guide#2-spaces-for-indentation).
 
 ### Additional tools you might need to insall.
 
+其他工具
+
 Some npm pakcages tries to install native node module and requries compiling of C++ code. NPM uses `node-gyp` for that. Install `node-gyp`:
+
+有的node包是用C++写的，需要调用编译器编译。NPM使用`node-gyp`来调用编译器，但是你自己的机器上得安装编译工具才行。先全局安装node-gyp：
 
 ```
 npm install -g node-gyp
@@ -78,9 +100,15 @@ npm install -g node-gyp
 
 For `node-gyp` to run, you also need to install:
 
+node-gyp需要这些东西才能运行，要装：
+
 - Mac
  - Python v2.7.0 (OS X ships with it).
  - XCode and its `Command Line Tools`.
+
+Mac上装上面两个就行了，OS X自带python 2.7，所以只要装了xcode就行了，command line tools默认不再xcode里面，需要再单独安装。
+
+Windows根据系统版本不同需要安装的东西不同：
 
 - Windows
  - Python v2.7.0. Make sure that you have a PYTHON environment variable, and it is set to `drive:\path\to\python.exe` not to a folder
@@ -122,7 +150,18 @@ If node-gyp is called by way of npm and you have multiple versions of Python ins
 npm config set python /path/to/executable/python2.7
 ```
 
+## NPM install
+
+设置完上面，更新了node和npm，就可以在本项目下面执行`npm install`。如果网络问题连不上npm，可以用淘宝的镜像网站：
+
+If `npm install` failed due to network connection, try to use taobao's npm mirror:
+```
+npm install --registry=https://registry.npm.taobao.org
+```
+
 ## Install gulp 4.0
+
+安装gulp 4，分为全局安装和局部安装。全局安装前先卸载gulp 3，有可能卸载不完全，去gulp文件夹里手动删除gulp目录。不愿意全局安装gulp 4的话，可以直接运行`npm run gulp task-name`，这样会调用当前目录中node_modules下面的gulp可执行文件。
 
 - Global gulp:
 ```
