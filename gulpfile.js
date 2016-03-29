@@ -31,15 +31,10 @@ gulp.task('mustache', function() {
     .pipe($.mustache(headerData, {
       extension: '.html'
     }))
-    .pipe($.sizereport({
+    .pipe($.size({
+      title: 'HTML file size:',
       gzip: true,
-      minifier: function(contents, filepath) {
-        return minify(contents, {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeAttributeQuotes: true
-        });
-      }
+      showFiles: true
     }))
     .pipe(gulp.dest(DEST))
     .pipe(browserSync.stream({once: true}));
