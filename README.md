@@ -37,7 +37,7 @@ sudo defaults write com.apple.finder AppleShowAllFiles YES
 
 ### Show full path in terminal, git branches and commit status
 
-1. Install `git-aware`:
+- Install `git-aware`:
 
 ```
 mkdir ~/.bash
@@ -45,7 +45,7 @@ cd ~/.bash
 git clone git://github.com/jimeh/git-aware-prompt.git
 ```
 
-2. Copy the following to the `.bash_profile` file under you home directory:
+- Copy the following to the `.bash_profile` file under you home directory:
 
 ```
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
@@ -55,7 +55,61 @@ export PS1="<\u@\h \w>\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$
 
 ### Configure `tab` equal to 2 spaces in your text editor.
 
-See [Node Style Guide](https://github.com/felixge/node-style-guide#2-spaces-for-indentation)
+See [Node Style Guide](https://github.com/felixge/node-style-guide#2-spaces-for-indentation).
+
+### Additional tools you might need to insall.
+
+Some npm pakcages tries to install native node module and requries compiling of C++ code. NPM uses `node-gyp` for that. Install `node-gyp`:
+
+```
+npm install -g node-gyp
+```
+
+For `node-gyp` to run, you also need to install:
+
+- Mac
+ - Python v2.7.0 (OS X ships with it).
+ - XCode and its `Command Line Tools`.
+
+- Windows
+ - Python v2.7.0. Make sure that you have a PYTHON environment variable, and it is set to `drive:\path\to\python.exe` not to a folder
+
+ - Windows XP/Vista/7:
+  - Microsoft Visual Studio C++ 2013 (Express version works well)
+  - If the install fails, try uninstalling any C++ 2010 x64&x86 Redistributable that you have installed first
+  - If you get errors that the 64-bit compilers are not installed you may also need the compiler update for the [Windows SDK 7.1](https://www.microsoft.com/en-us/download/details.aspx?id=4422).
+
+ - Windows 7/8: Microsoft Visual Studio C++ 2013 for Windows Desktop (Express version works well)
+
+ - Windows 10:
+  - Install the latest version of npm
+  - Install Python 2.7 from https://www.python.org/download/releases/2.7/ and make sure its on the System Path
+  - Install Visual Studio Community 2015 Edition. (Custom Install, Select Visual C++ during the installation)
+  - Set the environment variable GYP_MSVS_VERSION=2015
+  - Run the command prompt as Administrator
+  - $ npm install (--msvs_version=2015) <-- Shouldn't be needed if you have set GYP_MSVS_VERSION env
+  - If the above steps have not worked or you are unsure please visit http://www.serverpals.com/blog/building-using-node-gyp-with-visual-studio-express-2015-on-windows-10-pro-x64 for a full walkthrough
+
+ - All Windows Versions
+  - For 64-bit builds of node and native modules you will also need the [Windows 7 64-bit SDK](https://www.microsoft.com/en-us/download/details.aspx?id=8279)
+  - You may need to run one of the following commands if your build complains about WindowsSDKDir not being set, and you are sure you have already installed the SDK:
+
+```
+call "C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\Setenv.cmd" /Release /x86
+call "C:\Program Files\Microsoft SDKs\Windows\v7.1\bin\Setenv.cmd" /Release /x64
+```
+
+If you have multiple Python versions installed, you can identify which Python version node-gyp uses by setting the '--python' variable:
+
+```
+ node-gyp --python /path/to/python2.7
+```
+
+If node-gyp is called by way of npm and you have multiple versions of Python installed, then you can set npm's 'python' config key to the appropriate value:
+
+```
+npm config set python /path/to/executable/python2.7
+```
 
 ## Install gulp 4.0
 
@@ -78,7 +132,7 @@ Globally installed gulp 4.0 is compatible with locally installed gulp 3.
 
 We use `gulp-load-plugins` to load gulp plugins, which means you do not need to explicitly write `rename = require('gulp-rename)` in you gulp file. 
 
-After you set `const $ = require('gulp-load-plugins')();`, which has already been included in the gulpfile, all modules under `node-modules` directory beginning with `gulp-` will be aumotmatically attachend to the `$` object.
+After you set `const $ = require('gulp-load-plugins')();`, which has already been included in the gulpfile, all modules under `node-modules` directory beginning with `gulp-` will be aumotmatically attached to the `$` object.
 
 Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use `gulp-html-min`, write `$.htmlMin`, with hyphen replaced by `camelCase`.
 
@@ -90,7 +144,7 @@ Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use 
 
 ## Tasks
 
-**NOTE**: If you do not want to install `gulp 4` globally on you machine, you can run the following commands with `npm run gulp task-name`. This is use the locally installed `gulp 4` in the terminal.
+**NOTE**: If you do not want to install `gulp 4` globally on you machine, you can run the following commands with `npm run gulp task-name`. This will use the locally installed `gulp 4` in the terminal.
 
 - `gulp mustach` Build static html file from mustache template `view/index.mustache`. The template's json data is under `model`.
 
@@ -122,7 +176,7 @@ Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use 
 
 ## JS utitlies
 
-1. An `ajax` module was included int `o-header` component. We migth split it into a separate component if necessary. This module exports a `ajax` object with `getData(url, callback)` attached to it. `post` method might be added later.
+- An `ajax` module was included int `o-header` component. We migth split it into a separate component if necessary. This module exports a `ajax` object with `getData(url, callback)` attached to it. `post` method might be added later.
 
 ```
 const ajax = require('./ajax');
@@ -130,7 +184,7 @@ ajax.getData(url, callback(responseText))
 ```
 The `responseText` is parsed if server responded with proper headers, eg, `xml` or `json`. Otherwise it's plain text. You need to parse it yourself.
 
-2. A `util` module was provided in `client/js/util.js`. It is used to calculate the geometry of `window` and `HTMLElement`.
+- A `util` module was provided in `client/js/util.js`. It is used to calculate the geometry of `window` and `HTMLElement`.
 
 ```
 const util = require('./js/util');
