@@ -53,17 +53,26 @@ source "${GITAWAREPROMPT}/main.sh"
 export PS1="<\u@\h \w>\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 ```
 
+### Configure tab equals to 2 spaces in your text editor.
+
+This is the recommended practice by the node community.
+
 ## Install gulp 4.0
 
 - Global gulp:
-
-	npm uninstall -g gulp 
-	npm install -g "gulpjs/gulp-cli#4.0"
-
+```
+npm uninstall -g gulp 
+npm install -g "gulpjs/gulp-cli#4.0"
+```
 - Local gulp:
+```
+npm uninstall gulp --save-dev 
+npm install "gulpjs/gulp#4.0" --save-dev
+```
 
-	npm uninstall gulp --save-dev 
-	npm install "gulpjs/gulp#4.0" --save-dev
+You can refer to this article: [Migrating to gulp 4 by example](https://blog.wearewizards.io/migrating-to-gulp-4-by-example).
+
+Globally installed gulp 4.0 is compatible with locally installed gulp 3.
 
 ## How to require gulp plugins in gulpfile
 
@@ -107,6 +116,32 @@ Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use 
 - `gulp datastamp` generates `timestamp.html` file.
 
 - `gulp copy` copies files to server directory.
+
+## JS utitlies
+
+1. An `ajax` module was included int `o-header` component. We migth split it into a separate component if necessary. This module exports a `ajax` object with `getData(url, callback)` attached to it. `post` method might be added later.
+
+```
+const ajax = require('./ajax');
+ajax.getData(url, callback(responseText))
+```
+The `responseText` is parsed if server responded with proper headers, eg, `xml` or `json`. Otherwise it's plain text. You need to parse it yourself.
+
+2. A `util` module was provided in `client/js/util.js`. It is used to calculate the geometry of `window` and `HTMLElement`.
+
+```
+const util = require('./js/util');
+
+const windowOffset = util.getPageOffset()
+// => `windwoOffset.x` is how far the window has scrolled in x-axis. `windowOffset.y` is how far the window has scrolled in y-axis.
+
+const elementOffset = util.getElementOffset(el);
+// => `elementOffset.x` and `elementOffset.y` are the position of the top-left cornor of an element in the document's coordinates.
+
+const elementSize = util.getElementSize(el);
+// => `elementSize.width` and `elementSize.height` are the dimension of an element.
+```
+NOTE: `getElementSize()` returns **floating-point** number. If you need **integer** value (for example, ft's image service only accept integers), simply call `el.offsetWidth` and `el.offsetHeight`.
 
 ## Goals
 ### Design
