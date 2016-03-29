@@ -115,7 +115,7 @@ npm config set python /path/to/executable/python2.7
 
 - Global gulp:
 ```
-npm uninstall -g gulp 
+npm uninstall -g gulp // You may also need to go to the installation directory to delelte the gulp folder in case it fails to remove all files.
 npm install -g "gulpjs/gulp-cli#4.0"
 ```
 - Local gulp:
@@ -176,7 +176,7 @@ Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use 
 
 ## JS utitlies
 
-- An `ajax` module was included int `o-header` component. We migth split it into a separate component if necessary. This module exports a `ajax` object with `getData(url, callback)` attached to it. `post` method might be added later.
+- An `ajax` module was included in `o-header` component. We migth split it into a separate component if necessary. This module exports an `ajax` object with `getData(url, callback)` attached to it. `post` method will be added later.
 
 ```
 const ajax = require('./ajax');
