@@ -2,6 +2,8 @@
 
 ## Machine Setup
 
+### Install `homebrew`
+
 Before testing this branch, make sure you have read and followed the steps as specified here: [Dev Guide](http://ft-interactive.github.io/setup/mac/).
 
 Please install [Homebrew](http://brew.sh/) on Mac and change the owner of `usr/local` to youself. Mac OS does not provide this directory by default. It is you who created this directory and you, not the computer, must have full control over it.
@@ -12,9 +14,44 @@ sudo chown your-account-name:admin /usr/local
 
 After installed `homebrew`, you should install whatever software with `brew install`. DO NOT install software using their official binary installer unless it is not included in brew repository. Check [Brawmeister](http://braumeister.org/) to see whether the software you need is available.
 
+### Use `homebrew`
 `brew update` to update `homebrew` itself.
 
 `brew upgrade` to upgrade softwares installed by brew if there's a newer version.
+
+`brew cleanup` to delete downloaded cache to the latest version.
+
+### Show path and hidden files in Finder
+
+- Show path at the top of Finder:
+
+```
+sudo defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+```
+
+- Show hidden files:
+
+```
+sudo defaults write com.apple.finder AppleShowAllFiles YES
+```
+
+### Show full path in terminal, git branches and commit status
+
+1. Install `git-aware`:
+
+```
+mkdir ~/.bash
+cd ~/.bash
+git clone git://github.com/jimeh/git-aware-prompt.git
+```
+
+2. Copy the following to the `.bash_profile` file under you home directory:
+
+```
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+export PS1="<\u@\h \w>\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+```
 
 ## Install gulp 4.0
 
