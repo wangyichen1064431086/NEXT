@@ -53,9 +53,9 @@ source "${GITAWAREPROMPT}/main.sh"
 export PS1="<\u@\h \w>\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 ```
 
-### Configure tab equals to 2 spaces in your text editor.
+### Configure `tab` equal to 2 spaces in your text editor.
 
-This is the recommended practice by the node community.
+See [Node Style Guide](https://github.com/felixge/node-style-guide#2-spaces-for-indentation)
 
 ## Install gulp 4.0
 
