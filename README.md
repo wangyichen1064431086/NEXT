@@ -1,13 +1,20 @@
 # FTChinese Next Project
 
-## Todo. 2016.03.21
-- Use `gulp-sass` to replace `gulp-ruby-sass`. `gulp-sass` is node's binding to lib sass which is written in C, therefore much faster and compatible with Node.
+## Machine Setup
 
-- Upgrade to `gulp 4.0` which is backward compatible with `gulp 3`
+Before testing this branch, make sure you have read and followed the steps as specified here: [Dev Guide](http://ft-interactive.github.io/setup/mac/).
 
-- Upgrade node modules of this project. `npm update --save-dev`.
+Please install [Homebrew](http://brew.sh/) on Mac and change the owner of `usr/local` to youself. Mac OS does not provide this directory by default. It is you who created this directory and you, not the computer, must have full control over it.
 
-- Use `browser-sync` as static server.
+```
+sudo chown your-account-name:admin /usr/local
+```
+
+After installed `homebrew`, you should install whatever software with `brew install`. DO NOT install software using their official binary installer unless it is not included in brew repository. Check [Brawmeister](http://braumeister.org/) to see whether the software you need is available.
+
+`brew update` to update `homebrew` itself.
+
+`brew upgrade` to upgrade softwares installed by brew if there's a newer version.
 
 ## Install gulp 4.0
 
