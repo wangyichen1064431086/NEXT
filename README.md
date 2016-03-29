@@ -1,5 +1,12 @@
 # FTChinese Next Project
 
+## NPM install
+
+Use taobao's npm mirror:
+```
+npm install --registry=https://registry.npm.taobao.org
+```
+
 ## Machine Setup
 
 ### Install `homebrew`
