@@ -20,6 +20,24 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 安装完homebrew以后，`brew install software-name`安装软件。尽量别用软件官方的安装包安装，都交给homebrew去管理。在hombrew的网站列表里可以看哪些软件可以直接用brew安装：[Brawmeister](http://braumeister.org/)。
 
+#### 手动安装
+
+Homebrew commit次数很多，全部下载文件较大，可能因为网络timeout无法下载，可以直接git clone下来就可以。假设你要安装到`usr/local`目录：
+
+```bash
+sudo chown account-name /usr/local
+git clone --depth=1 https://github.com/Homebrew/homebrew.git /usr/local
+```
+
+`echo $PATH`看一下`/usr/local/bin`是否在系统路径中，没有则在`~/.bash_profile`中添加这一行：
+
+```bash
+export PATH=/usr/local/bin:$PATH
+```
+
+命令行中运行 `source ~/.bash_profile`更新环境设置。
+
+
 ### Use `homebrew`
 `brew update` to update `homebrew` itself.
 
@@ -27,7 +45,8 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 `brew cleanup` to delete downloaded cache to the latest version.
 
-### brew用法
+brew用法
+
 `brew update` 更新homebrew软件本身，这会更新brew的数据列表，它会返回最近哪些软件有了新的更新包。
 
 `brew upgrade` 有了新的更新包就用这个命令更新homebrew安装过的软件。
@@ -38,9 +57,7 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 If you have `homebrew` installed, run `brew install node`. Otherwise go to [Node.js](https://nodejs.org/en/) to download the binary installer. The latest version as of this writing is 5.9.1.
 
-安装最新版node.js
-
-Homebrew可以直接装node，不要用官方的安装包。
+安装最新版node.js. Homebrew可以直接装node，不要用官方的安装包。
 
 ### Alternatively you can use [NVM](https://github.com/creationix/nvm).
 
