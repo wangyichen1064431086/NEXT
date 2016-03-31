@@ -84,14 +84,14 @@ svg4everybody();
 </head>
 
 <body>
-{{> frontpage/o-header}}
+{* {include file="./frontpage/o-header.tpl"}
 
-{{> frontpage/latest}}
+{include file="./frontpage/latest.tpl"}
                     
 
-{{> frontpage/o-footer}}        
+{include file="./frontpage/o-footer.tpl"}        
 
-{{> frontpage/app-promo}}
+{include file="./frontpage/app-promo.tpl"} *}
 
 
 

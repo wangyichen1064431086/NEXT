@@ -20,7 +20,7 @@ After installed `homebrew`, you should install whatever software with `brew inst
 
 安装完homebrew以后，`brew install software-name`安装软件。尽量别用软件官方的安装包安装，都交给homebrew去管理。在hombrew的网站列表里可以看哪些软件可以直接用brew安装：[Brawmeister](http://braumeister.org/)。
 
-#### 手动安装
+#### 手动安装`homebrew`
 
 Homebrew commit次数很多，全部下载文件较大，可能因为网络timeout无法下载，可以直接git clone下来就可以。假设你要安装到`usr/local`目录：
 
@@ -38,7 +38,7 @@ export PATH=/usr/local/bin:$PATH
 命令行中运行 `source ~/.bash_profile`更新环境设置。
 
 
-### Use `homebrew`
+#### Use `homebrew`
 `brew update` to update `homebrew` itself.
 
 `brew upgrade` to upgrade softwares installed by brew if there's a newer version.
@@ -53,15 +53,39 @@ brew用法
 
 `brew cleanup` 把缓存中homebrew下载过的软件安装包删除，只剩最新一个版本。
 
-### Install latest node.
+### Install PHP and Composer
+
+#### PHP via Homebrew
+
+Before installing php via homebrew, you need to setup homebrew first:
+
+```bash
+brew tap homebrew/dupes
+brew tap homebrew/versions
+brew tap homebrew/homebrew-php
+
+brew install php70 ## install php 7.
+```
+
+#### Composer via Hombrew
+
+```
+brew install composer
+```
+
+or manual install [Download Composer](https://getcomposer.org/download/).
+
+### Install latest node.js.
 
 If you have `homebrew` installed, run `brew install node`. Otherwise go to [Node.js](https://nodejs.org/en/) to download the binary installer. The latest version as of this writing is 5.9.1.
 
 安装最新版node.js. Homebrew可以直接装node，不要用官方的安装包。
 
-### Alternatively you can use [NVM](https://github.com/creationix/nvm).
+#### Alternatively you can use [NVM](https://github.com/creationix/nvm).
 
-### Show path and hidden files in Finder. Mac上在Finder中显示路径名和隐藏文件
+### Show path and hidden files in Finder. 
+
+Mac上在Finder中显示路径名和隐藏文件
 
 - Show path at the top of Finder:
 
@@ -99,11 +123,27 @@ source "${GITAWAREPROMPT}/main.sh"
 export PS1="<\u@\h \w>\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
 ```
 
-### Configure `tab` equal to 2 spaces in your text editor.
+### Text editor
+
+Configure `tab` equal to 2 spaces in your text editor.
 
 文本编辑器里把tab键设为等于两个空格，这是node的推荐style。
 
 See [Node Style Guide](https://github.com/felixge/node-style-guide#2-spaces-for-indentation).
+
+#### Sublime
+
+If you're using Sublime, it is highly recommended to install the following plugins:
+
+- AutoFileName
+
+- FT Origami
+
+- Handlebars
+
+- Smarty
+
+- GitGutter
 
 ### Additional tools you might need to insall.
 
@@ -229,7 +269,7 @@ You can refer to this article: [Migrating to gulp 4 by example](https://blog.wea
 
 Globally installed gulp 4.0 is compatible with locally installed gulp 3.
 
-## How to require gulp plugins in gulpfile
+### How to require gulp plugins in gulpfile
 
 We use `gulp-load-plugins` to load gulp plugins, which means you do not need to explicitly write `rename = require('gulp-rename)` in you gulp file. 
 
@@ -237,7 +277,7 @@ After you set `const $ = require('gulp-load-plugins')();`, which has already bee
 
 Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use `gulp-html-min`, write `$.htmlMin`, with hyphen replaced by `camelCase`.
 
-## Require node modules in gulpfile.
+### Require node modules in gulpfile.
 
 1. Put all `require` statement at the beginning of the file.
 
