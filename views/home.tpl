@@ -51,7 +51,7 @@
           document.createElement('aside');
           document.createElement('footer');
       </script>
-      <script src="bower_components/svg4everybody/dist/svg4everybody.legacy.min.js"></script>
+      <script src="svg4everybody/dist/svg4everybody.legacy.min.js"></script>
       <script>
 svg4everybody();
       </script>
@@ -71,8 +71,8 @@ svg4everybody();
   var dolRand = Math.round(Math.random()*1000000000);//定义slot随机数实现联动互斥功能
   </script>
   <!-- build:js scripts/key.js -->
-{*   <script type="text/javascript" src="scripts/key.js"></script>
-  <script type="text/javascript" src="scripts/ad.js"></script> *}
+  <script type="text/javascript" src="scripts/key.js"></script>
+  <script type="text/javascript" src="scripts/ad.js"></script>
   <!-- endbuild -->
    <script>
    window.cutsTheMustard = (typeof Function.prototype.bind !== 'undefined');
@@ -101,7 +101,7 @@ svg4everybody();
 <![endif]-->
 
 <!-- build:js scripts/main.js -->
-{* <script src="scripts/bundle.js"></script> *}
+<script src="scripts/bundle.js"></script>
 <!-- endbuild -->
 
 

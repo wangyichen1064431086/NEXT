@@ -17,8 +17,7 @@ const watchify = require('watchify');
 const debowerify = require('debowerify');
 const babelify = require('babelify');
 const cssnext = require('postcss-cssnext');
-const minify = require('html-minifier').minify;
-
+const php = require('gulp-connect-php');
 
 // Use template file to generate static html
 gulp.task('mustache', function() {
@@ -189,11 +188,11 @@ gulp.task('requestdata', function(done) {
 
 gulp.task('serve', 
   gulp.parallel(
-  'mustache', 'styles', 'scripts', 'data', 'copyjs', 'copym',
+  /*'mustache', */'styles', 'scripts', 'data', 'copyjs', 'copym',
     function serve() {
     browserSync.init({
       server: {
-        baseDir: ['.tmp', 'app'],
+        baseDir: ['.tmp'/*, 'app'*/],
         routes: { 
           '/bower_components': 'bower_components'
         }
@@ -206,6 +205,27 @@ gulp.task('serve',
     gulp.watch(['client/**/*.scss'], gulp.parallel('styles'));
   })
 );
+
+gulp.task('php', function() {
+  php.server({
+    base: 'server',
+    port: '8010',
+    keepalive: true
+  });
+});
+
+gulp.task('watch', gulp.parallel('php', function() {
+  browserSync.init({
+    proxy: 'localhost:8010',
+    port: 8080,
+    open: true,
+    notify: true,
+    serveStatic: ['bower_components', '.tmp']
+  });
+
+  gulp.watch(['views/**/*.tpl', 'server/*.php'], browserSync.realod);
+  gulp.watch(['client/**/*.scss'], gulp.parallel('styles'));
+}));
 
 gulp.task('clean', function() {
   return del(['.tmp/**', 'dist']).then(()=>{

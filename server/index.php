@@ -32,7 +32,7 @@ $smarty->assign('navs', array(
 		'name'=>'首页', 
 		'url'=>'/',
 		'subNavs' => array(
-			array('mobile'=>true,'url'=>'', 'name'=>'频道首页'),
+			array('mobile'=>true,'url'=>'', 'name'=>'FT中文网首页'),
 			array('url'=>'', 'name'=>'专题报道'),
 			array('url'=>'', 'name'=>'热门文章'),
 			array('url'=>'', 'name'=>'会议活动'),
@@ -42,14 +42,14 @@ $smarty->assign('navs', array(
 			)
 		),
 	array(
-		'selected'=>true, 
+		'selected'=>'true', 
 		'channel'=>'china', 
 		'name'=>'中国', 
 		'url'=>'',
 		'subNavs' => array(
 			array('mobile'=>true,'url'=>'', 'name'=>'频道首页'),
 			array('url'=>'', 'name'=>'政经'),
-			array('url'=>'', 'name'=>'商业'),
+			array('url'=>'', 'name'=>'商业', 'selected'=>'true'),
 			array('url'=>'', 'name'=>'金融市场'),
 			array('url'=>'', 'name'=>'股市'),
 			array('url'=>'', 'name'=>'房地产'),

@@ -71,7 +71,7 @@
 
               <ol class="nav-items">
                 {foreach $nav.subNavs as $subNav}
-                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}">
+                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}"{if (isset($subNav.selected))} aria-selected="{$subNav.selected}"{/if}>
                   <a class="nav-link" href="{$subNav.url}">{$subNav.name}</a>
                 </li>
                 {/foreach}
@@ -81,8 +81,8 @@
             {/foreach}
 
             {foreach $toolsItems as $item}
-            <li class="tools-item">
-              <a class="tools-link" href="{$item.url}">{$item.name}</a>
+            <li class="nav-item mobile">
+              <a class="nav-link" href="{$item.url}">{$item.name}</a>
             </li>
             {/foreach}
           </ol>
