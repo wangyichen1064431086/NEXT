@@ -121,7 +121,7 @@
             </ol>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
+            <a class="nav-link follow-feed" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
           </li>
         </ul>
       </div>{* o-header__bottom *}

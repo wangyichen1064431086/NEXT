@@ -34,35 +34,65 @@
 	}
 }
 
-.nav-sub-items {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	right: 0;
-
-	display: none;
-
-	@include oColorsFor(o-header-sub-nav, background);
-	li {
-		border-top: 1px solid #666;
-	}
-
-	a{
-		@include oColorsFor(o-header, text);
-		padding: 10px 20px;
-		display: block;
-		text-decoration: none;
-		white-space: nowrap;
-
-		&:hover {
-			@include oColorsFor(o-header-nav-link-hover, background);
+.nav-link {
+	&:after {
+		content: '';
+		display: inline-block;
+		margin-left: 10px;
+		border-top: 8px solid oColorsGetColorFor(o-header-edition-switch, border);
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+// set the triangle arrow.
+ 		.nav-item:hover & {
+			border-top: 0;
+			border-bottom: 8px solid oColorsGetColorFor(o-header-edition-switch, border);
 		}
 	}
 
-	.nav-item:hover &,
-	.nav-link:hover ~ & {
-		display: block;
+	&:hover/* ,
+	&:focus */ {
+		&:after {
+		border-top: 0;
+		border-bottom: 8px solid oColorsGetColorFor(o-header-edition-switch, border);
+		}
+	}
+
+}
+
+.nav-sub-items {
+
+	display: none;
+
+	@include oGridRespondTo(M) {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		right: 0;
+
+		display: none;
+
+		@include oColorsFor(o-header-sub-nav, background);
+		li {
+			border-top: 1px solid #666;
+		}
+
+		a{
+			@include oColorsFor(o-header, text);
+			padding: 10px 20px;
+			display: block;
+			text-decoration: none;
+			white-space: nowrap;
+
+			&:hover {
+				@include oColorsFor(o-header-nav-link-hover, background);
+			}
+		}
+
+		.nav-item:hover &,
+		.nav-link:hover ~ & {
+			display: block;
+		}		
 	}
 }
 
