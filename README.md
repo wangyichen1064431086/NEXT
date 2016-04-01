@@ -315,32 +315,6 @@ Say, you want to use `gulp-rename`, just write `$.rename()`. If you want to use 
 
 - `gulp copy` copies files to server directory.
 
-## JS utitlies
-
-- An `ajax` module was included in `o-header` component. We migth split it into a separate component if necessary. This module exports an `ajax` object with `getData(url, callback)` attached to it. `post` method will be added later.
-
-```
-const ajax = require('./ajax');
-ajax.getData(url, callback(responseText))
-```
-The `responseText` is parsed if server responded with proper headers, eg, `xml` or `json`. Otherwise it's plain text. You need to parse it yourself.
-
-- A `util` module was provided in `client/js/util.js`. It is used to calculate the geometry of `window` and `HTMLElement`.
-
-```
-const util = require('./js/util');
-
-const windowOffset = util.getPageOffset()
-// => `windwoOffset.x` is how far the window has scrolled in x-axis. `windowOffset.y` is how far the window has scrolled in y-axis.
-
-const elementOffset = util.getElementOffset(el);
-// => `elementOffset.x` and `elementOffset.y` are the position of the top-left cornor of an element in the document's coordinates.
-
-const elementSize = util.getElementSize(el);
-// => `elementSize.width` and `elementSize.height` are the dimension of an element.
-```
-NOTE: `getElementSize()` returns **floating-point** number. If you need **integer** value (for example, ft's image service only accept integers), simply call `el.offsetWidth` and `el.offsetHeight`.
-
 ## Goals
 ### Design
 Redesign the www.ftchinese.com for best content display on all devices. 

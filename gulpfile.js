@@ -17,27 +17,7 @@ const watchify = require('watchify');
 const debowerify = require('debowerify');
 const babelify = require('babelify');
 const cssnext = require('postcss-cssnext');
-const php = require('gulp-connect-php');
 
-// Use template file to generate static html
-gulp.task('mustache', function() {
-  const DEST = '.tmp';
-
-  const headerData = JSON.parse(fs.readFileSync('model/nav-main.json'));
-
-  return gulp.src('views/index.mustache')
-    .pipe($.changed(DEST))
-    .pipe($.mustache(headerData, {
-      extension: '.html'
-    }))
-    .pipe($.size({
-      title: 'HTML file size:',
-      gzip: true,
-      showFiles: true
-    }))
-    .pipe(gulp.dest(DEST))
-    .pipe(browserSync.stream({once: true}));
-});
 
 gulp.task('htmllint', function() {
   gulp.src('app/index.html')
@@ -47,7 +27,7 @@ gulp.task('htmllint', function() {
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src(['client/main.scss', 'client/scss/ie*.scss'])
+  return gulp.src('header/o-header.scss')
     .pipe($.changed(DEST)) 
     .pipe($.plumber()) 
     .pipe($.sourcemaps.init({loadMaps:true})) 
@@ -66,64 +46,6 @@ gulp.task('styles', function styles() {
     .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(DEST))
     .pipe(browserSync.stream({once:true})); 
-});
-
-gulp.task('scripts', function scripts() {
-  var b = browserify({
-    entries: 'client/main.js',
-    debug: true,
-    cache: {},
-    packageCache: {},
-    transform: [babelify, debowerify],
-    plugin: [watchify]
-  });
-
-  b.on('update', bundle);
-  b.on('log', $.util.log);
-
-  bundle();
-
-  function bundle(ids) {
-    $.util.log('Compiling JS...');
-    if (ids) {
-      console.log('Changed Files:\n' + ids);
-    }   
-    return b.bundle()
-      .on('error', function(err) {
-        $.util.log(err.message);
-        browserSync.notify('Browerify Error!')
-        this.emit('end')
-      })
-      .pipe(source('bundle.js'))
-      .pipe(buffer())
-      .pipe($.sourcemaps.init({loadMaps: true}))
-      .pipe($.sourcemaps.write('./'))
-      .pipe(gulp.dest('.tmp/scripts'))
-      .pipe(browserSync.stream({once:true}));
-  }
-});
-
-gulp.task(function js() {
-  const DEST = '.tmp/scripts';
-
-  var b = browserify({
-    entries: 'client/main.js',
-    debug: true,
-    cache: {},
-    packageCache: {},
-    transform: [babelify, debowerify]
-  });
-
-  return b.bundle()
-    .on('error', function(err) {
-      $.util.log(err.message);
-      this.emit('end')
-    })
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe($.sourcemaps.init({loadMaps: true}))
-    .pipe($.sourcemaps.write('./'))
-    .pipe(gulp.dest(DEST));
 });
 
 gulp.task('lint', function() {
@@ -146,14 +68,11 @@ gulp.task('lint', function() {
     .pipe($.eslint.failAfterError());  
 });
 
-gulp.task('data', function() {
-  return gulp.src('model/sub-nav.json')
-    .pipe(gulp.dest('.tmp/data'))
-});
 
 gulp.task('copyjs', function() {
-  return gulp.src('app/scripts/ad.js', 'app/scripts/key.js')
-  .pipe(gulp.dest('.tmp/scripts'));
+  return gulp.src(['app/scripts/*.js', 'client/js/*.js'])
+  .pipe(gulp.dest('.tmp/scripts'))
+  .pipe(browserSync.stream({once:true}));
 });
 
 gulp.task('copym', function() {
@@ -188,7 +107,7 @@ gulp.task('requestdata', function(done) {
 
 gulp.task('serve', 
   gulp.parallel(
-  /*'mustache', */'styles', 'scripts', 'data', 'copyjs', 'copym',
+  /*'mustache', */'styles', /*'scripts',*/ 'copyjs', 'copym',
     function serve() {
     browserSync.init({
       server: {
@@ -207,14 +126,17 @@ gulp.task('serve',
 );
 
 gulp.task('php', function() {
-  php.server({
+  $.connectPhp.server({
     base: 'server',
     port: '8010',
     keepalive: true
   });
 });
 
-gulp.task('watch', gulp.parallel('php', function() {
+
+gulp.task('watch', gulp.parallel(
+  'styles', /*'scripts',*/ 'copyjs', 'copym', 'php',
+  function() {
   browserSync.init({
     proxy: 'localhost:8010',
     port: 8080,
@@ -223,8 +145,9 @@ gulp.task('watch', gulp.parallel('php', function() {
     serveStatic: ['bower_components', '.tmp']
   });
 
-  gulp.watch(['views/**/*.tpl', 'server/*.php'], browserSync.realod);
-  gulp.watch(['client/**/*.scss'], gulp.parallel('styles'));
+  gulp.watch(['views/**/*', 'server/*']);
+  gulp.watch(['header/**/*.js', 'app/**/*.js'], gulp.parallel('copyjs'));
+  gulp.watch('header/**/*.scss', gulp.parallel('styles'));
 }));
 
 gulp.task('clean', function() {
@@ -301,7 +224,7 @@ gulp.task('home', function(done) {
   });
 });
 
-gulp.task('build', gulp.series('styles', 'js', gulp.parallel('html', 'images',  'extras', 'ad')));
+gulp.task('build', gulp.series('styles', gulp.parallel('html', 'images',  'extras', 'ad')));
 
 gulp.task('datestamp', function(done) {
   const dateStamp = new Date().getTime();

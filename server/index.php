@@ -1,18 +1,7 @@
 <?php
-
 require '../vendor/autoload.php';
 
 $smarty = new Smarty;
-
-$smarty->assign('names', array('bob','jim','joe','jerry','fred'));
-
-$smarty->assign('users', array(
-		array('name'=>'bob', 'phone'=>'555-3425'),
-		array('name'=>'jim', 'phone'=>'555-4364'),
-		array('name'=>'joe', 'phone'=>'555-3422'),
-		array('name'=>'jerry', 'phone'=>'555-4973'),
-		array('name'=>'fred', 'phone'=>'555-3235')
-	));
 
 $smarty->assign('editions', array(
 		array('url'=>'', 'name'=>'繁体版'),

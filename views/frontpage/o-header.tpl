@@ -4,7 +4,9 @@
 
       <div class="o-header__top">
 
-        <div class="o-header__edition" data-o-component="o-switch">
+        <div class="o-header__edition">
+          <button class="switch-button">中国版</button>
+
           <ul class="editions">
             {foreach $editions as $edition}
             <li><a href="{$edition.url}" class="edition-link">{$edition.name}</a>
@@ -88,6 +90,40 @@
           </ol>
         </nav>
 
+        <ul class="o-header__extra-tools nav-items">
+          <li class="nav-item">
+            <a class="nav-link" href="http://www.ftchinese.com/m/corp/follow.html">关注我们</a>
+            <ol class="nav-sub-items">
+              <li><a href="" class="follow-sina-weibo">新浪微博</a></li>
+              <li><a href="" class="follow-tencent-weibo">腾讯微博</a></li>
+              <li><a href="" class="follow-netease-weibo">网易微博</a></li>
+              <li><a href="" class="follow-sohu-weibo">搜狐微博</a></li>
+              <li><a href="" class="follow-qq-space">QQ空间</a></li>
+              <li><a href="" class="follow-sina-blog">新浪博客</a></li>
+              <li><a href="" class="follow-sohu-blog">搜狐博客</a></li>
+              <li><a href="" class="follow-netease-lofter">网易博客</a></li>
+              <li><a href="" class="follow-renren">人人网</a></li>
+              <li><a href="" class="follow-facebook">FaceBook</a></li>
+              <li><a href="" class="follow-twitter">Twitter</a></li>
+              <li><a href="" class="follow-google-plus">Google+</a></li>
+            </ol>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link">工具</span>
+            <ol class="nav-sub-items">
+              <li><a href="">移动应用大全</a></li>
+              <li><a href="">基本设置</a></li>
+              <li><a href="">修改头像</a></li>
+              <li><a href="">邮件订阅</a></li>
+              <li><a href="">同步微博</a></li>
+              <li><a href="">我的评论</a></li>
+              <li><a href="">管理收藏</a></li>
+            </ol>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
+          </li>
+        </ul>
       </div>{* o-header__bottom *}
     </div><!-- o-header__container -->    
   </div>{* o-header-secondary *}

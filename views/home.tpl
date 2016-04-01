@@ -57,7 +57,7 @@ svg4everybody();
       </script>
   <![endif]-->
   <!-- build:css styles/bundle.min.css -->
-  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="styles/o-header.css">
   <!-- endbuild -->
   <!-- build:css styles/ie-XL.css -->
   <link rel="stylesheet" href="styles/ie-XL.css">
@@ -101,7 +101,8 @@ svg4everybody();
 <![endif]-->
 
 <!-- build:js scripts/main.js -->
-<script src="scripts/bundle.js"></script>
+<script src="scripts/dom-delegate.js"></script>
+<script src="scripts/o-header.js"></script>
 <!-- endbuild -->
 
 
