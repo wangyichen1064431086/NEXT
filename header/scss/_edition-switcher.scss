@@ -50,7 +50,6 @@
 
 	&:hover/* ,
 	&:focus */ {
-		border-bottom: 1px solid oColorsGetPaletteColor('white');
 		&:after {
 		border-top: 0;
 		border-bottom: 8px solid oColorsGetColorFor(o-header-edition-switch, border);

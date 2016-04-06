@@ -290,13 +290,11 @@
 		@include oColorsFor(o-header, text);
 		
 		cursor: pointer;
-		
+
 		&:hover,
 		.nav-item[aria-selected=true] & {
 			@include oColorsFor(o-header-nav-link-hover, background);
-		}
-
-		
+		}		
 	}
 }
 

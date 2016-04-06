@@ -73,13 +73,20 @@
 
               <ol class="nav-items">
                 {foreach $nav.subNavs as $subNav}
-                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}"{if (isset($subNav.selected))} aria-selected="{$subNav.selected}"{/if}  aria-popup="true">
+                
+                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}"{if (isset($subNav.selected))} aria-selected="{$subNav.selected}"{/if}{if (isset($subNav.popup))}  aria-popup="true"{/if}>
                   <a class="nav-link" href="{$subNav.url}">{$subNav.name}</a>
 
                   <ol class="nav-sub-items">
-                    <li><a href="">数据新闻</a></li>
+
+                  {if (isset($subNav.popup))}
+                    {foreach $subNav.subSubNavs as $subSubNav}
+                    <li><a href="{$subSubNav.url}">{$subSubNav.name}</a></li>
+                    {/foreach}
+                  {/if}
+
                   </ol>
-                  
+
                 </li>
                 {/foreach}
               </ol>
@@ -100,12 +107,12 @@
             
             <a class="nav-link" href="http://www.ftchinese.com/m/corp/follow.html">关注我们</a>
 
-            <ol class="nav-sub-items">
+            <ol class="nav-sub-items follow-us">
               <li><a href="" class="follow-sina-weibo">新浪微博</a></li>
               <li><a href="" class="follow-tencent-weibo">腾讯微博</a></li>
               <li><a href="" class="follow-netease-weibo">网易微博</a></li>
               <li><a href="" class="follow-sohu-weibo">搜狐微博</a></li>
-              <li><a href="" class="follow-qq-space">QQ空间</a></li>
+              <li><a href="" class="follow-qzone">QQ空间</a></li>
               <li><a href="" class="follow-sina-blog">新浪博客</a></li>
               <li><a href="" class="follow-sohu-blog">搜狐博客</a></li>
               <li><a href="" class="follow-netease-lofter">网易博客</a></li>
@@ -128,7 +135,7 @@
             </ol>
           </li>
           <li class="nav-item">
-            <a class="nav-link follow-feed" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
+            <a class="nav-link follow__rss" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
           </li>
         </ul>
       </div>{* o-header__bottom *}

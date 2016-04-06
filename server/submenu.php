@@ -7,13 +7,11 @@ $smarty->assign('editions', array(
 		array('url'=>'', 'name'=>'繁体版'),
 		array('url'=>'', 'name'=>'英文版')
 	));
-
 $smarty->assign('toolsItems', array(
 		array('url'=>'', 'name'=>'myFT'),
 		array('url'=>'', 'name'=>'退出'),
 		array('url'=>'', 'name'=>'账户设置')
 	));
-
 $smarty->assign('navs', array(
 	array(
 		'selected'=>false, 
@@ -245,4 +243,4 @@ $smarty->assign('navs', array(
 		)
 	));
 
-$smarty->display('../views/home.tpl');
+$smarty->display('../views/submenu.tpl');

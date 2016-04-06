@@ -80,6 +80,11 @@ gulp.task('copym', function() {
     .pipe(gulp.dest('.tmp/m'));
 });
 
+gulp.task('copyicon', function() {
+  return gulp.src('header/icons/*')
+    .pipe(gulp.dest('.tmp/icons'));
+});
+
 gulp.task('requestdata', function(done) {
   const dateStamp = new Date().getTime();
   const url = 'http://www.ftchinese.com/m/corp/p0.html?' + dateStamp;
@@ -135,7 +140,7 @@ gulp.task('php', function() {
 
 
 gulp.task('watch', gulp.parallel(
-  'styles', /*'scripts',*/ 'copyjs', 'copym', 'php',
+  'styles', /*'scripts',*/ 'copyjs', 'copym', 'copyicon', 'php',
   function() {
   browserSync.init({
     proxy: 'localhost:8010',
@@ -145,6 +150,7 @@ gulp.task('watch', gulp.parallel(
     serveStatic: ['bower_components', '.tmp']
   });
 
+  gulp.watch('header/icons/*', gulp.parallel('copyicon'));
   gulp.watch(['views/**/*', 'server/*']);
   gulp.watch(['header/**/*.js', 'app/**/*.js'], gulp.parallel('copyjs'));
   gulp.watch('header/**/*.scss', gulp.parallel('styles'));

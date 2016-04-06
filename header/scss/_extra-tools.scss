@@ -30,9 +30,52 @@
 		.nav-sub-items {
 			left: auto;
 			right: 0;
+			&.follow-us a {
+				padding-left: 40px;
+				background-repeat: no-repeat;
+				background-position: left center;
+				background-size: contain;
+			}
 		}
 	}
 }
 
+.follow__rss {
+	&:after {
+		content: '';
+		@include oIconsSvgSassIcon(rss, #ffffff, 20);
+		background-color: oColorsGetPaletteColor('orange');
+		vertical-align: middle;
+	}
+	span {
+		display: none;
+	}
+	&:hover {
+		background-color: transparent;
+	}
+}
+
+.follow-sina-weibo {
+	background-image: sassvg(social-weibo, $fillcolor: #fff);
+}
+
+.follow-facebook {
+	background-image: sassvg(social-facebook, $fillcolor: #fff);
+}
+.follow-twitter {
+	background-image: sassvg(social-twitter, $fillcolor: #fff);
+}
+
+.follow-google-plus {
+	background-image: url(../icons/google+.svg);
+}
+
+.follow-qzone {
+	background-image: url(../icons/qzone.svg);
+}
+
+.follow-renren {
+	background-image: url(../icons/renren.svg);
+}
 
 
