@@ -73,8 +73,13 @@
 
               <ol class="nav-items">
                 {foreach $nav.subNavs as $subNav}
-                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}"{if (isset($subNav.selected))} aria-selected="{$subNav.selected}"{/if}>
+                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}"{if (isset($subNav.selected))} aria-selected="{$subNav.selected}"{/if}  aria-popup="true">
                   <a class="nav-link" href="{$subNav.url}">{$subNav.name}</a>
+
+                  <ol class="nav-sub-items">
+                    <li><a href="">数据新闻</a></li>
+                  </ol>
+                  
                 </li>
                 {/foreach}
               </ol>
@@ -91,8 +96,10 @@
         </nav>
 
         <ul class="o-header__extra-tools nav-items">
-          <li class="nav-item">
+          <li class="nav-item" aria-popup="true">
+            
             <a class="nav-link" href="http://www.ftchinese.com/m/corp/follow.html">关注我们</a>
+
             <ol class="nav-sub-items">
               <li><a href="" class="follow-sina-weibo">新浪微博</a></li>
               <li><a href="" class="follow-tencent-weibo">腾讯微博</a></li>
@@ -108,7 +115,7 @@
               <li><a href="" class="follow-google-plus">Google+</a></li>
             </ol>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" aria-popup="true">
             <span class="nav-link">工具</span>
             <ol class="nav-sub-items">
               <li><a href="">移动应用大全</a></li>

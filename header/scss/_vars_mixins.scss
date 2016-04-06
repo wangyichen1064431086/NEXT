@@ -41,6 +41,20 @@ $o-header-mobile-right-width: percentage(($o-grid-columns - $o-header-mobile-wid
 	padding-left: 5px;
 }
 
+@mixin oHeaderArrowUp {
+	border-top: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;	
+	border-bottom: 8px solid oColorsGetColorFor(o-header-edition-switch, border);	
+}
+
+@mixin oHeaderArrowDown {
+	border-top: 8px solid oColorsGetColorFor(o-header-edition-switch, border);
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 0;
+}
+
 // FT's mixin. It seems we do not need them.
 @mixin oHeaderNavItem() {
 	display: block;
