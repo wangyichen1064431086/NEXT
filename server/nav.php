@@ -3,6 +3,9 @@
 require '../vendor/autoload.php';
 
 $smarty = new Smarty;
+$smarty->left_delimiter = "<%";
+$smarty->right_delimiter = "%>";
+
 $smarty->setCaching(Smarty::CACHING_OFF);
 
 $home = array (
@@ -1174,9 +1177,20 @@ $stream = array (
   "type"=>"channel",
 );
 
-$smarty->assign('navs', array(
-	$home, $china, $global, $economy, $markets, $companies, $opinion, $management, $lifestyle, $stream
-	));
+$data = array(
+	$home, 
+	$china, 
+	$global, 
+	$economy, 
+	$markets, 
+	$companies, 
+	$opinion, 
+	$management, 
+	$lifestyle, 
+	$stream
+);
+
+$smarty->assign('datass1', $data);
 
 
 $smarty->display('../views/nav-test.tpl');

@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="styles/o-header.css">
-
 <header class="o-header" data-o-component="o-header">
   <div class="o-header__primary">
     <div class="o-header__container">
@@ -17,7 +16,7 @@
         </div>
 
         <div class="o-header__masthead">
-          <a href="/" title="前往FT中文网首页">{include file="./frontpage/logo-masthead.tpl"}<span>FT中文网</span>
+          <a href="/" title="前往FT中文网首页"><%include file="./frontpage/logo-masthead.tpl"%><span>FT中文网</span>
           </a>
         </div> 
 
@@ -34,9 +33,9 @@
               </li>
           </ul>
         </nav>
-      </div>{* o-header__top *}
-    </div>{* o-header__container *}    
-  </div>{* o-header__primary *}
+      </div><!--  o-header__top --> 
+    </div><!--  o-header__container -->     
+  </div><!--  o-header__primary  -->
 
   <div class="o-header__secondary">
     <div class="o-header__container">
@@ -48,7 +47,7 @@
         </form>
 
         <div class="o-header__masthead-mobile">
-            <a href="/" title="前往FT中文网首页">{include file="./frontpage/logo-masthead.tpl"}<span>FT中文网</span></a>
+            <a href="/" title="前往FT中文网首页"><%include file="./frontpage/logo-masthead.tpl"%><span>FT中文网</span></a>
         </div>
 
         <nav class="o-header__nav-container" role="navigation">
@@ -70,40 +69,40 @@
               </ol>
             </li>
 
-            {foreach $navs as $nav}
-            <li class="nav-section" aria-selected="" data-section="{$nav.code}">
+            <%foreach $datass1 as $nav%>
+            <li class="nav-section" aria-selected="" data-section="<%$nav.code%>">
 
-              <button class="nav-section-head mobile" data-o-header-selectable>{$nav.name}</button>
+              <button class="nav-section-head mobile" data-o-header-selectable><%$nav.name%></button>
 
-              <a class="nav-section-head desktop" href="{$nav.link}">{$nav.name}</a>
+              <a class="nav-section-head desktop" href="<%$nav.link%>"><%$nav.name%></a>
 
               <ol class="nav-items">
 
                 <li class="nav-item mobile">
-                  <a class="nav-link" href="{$nav.link}">{if $nav.link == '/'}FT中文网首页{else}频道首页{/if}</a>
+                  <a class="nav-link" href="<%$nav.link%>"><%if $nav.link == '/'%>FT中文网首页<%else%>频道首页<%/if%></a>
                 </li>
 
-                {foreach $nav.children as $children}
+                <%foreach $nav.children as $children%>
                 
-                <li class="nav-item" aria-selected=""{if ($children.haschildren)}  aria-popup="true"{/if}>
-                  <a class="nav-link" href="{$children.link}">{$children.name}</a>
+                <li class="nav-item" aria-selected=""<%if ($children.haschildren)%> aria-popup="true"<%/if%>>
+                  <a class="nav-link" href="<%$children.link%>"><%$children.name%></a>
 
                   <ol class="nav-sub-items">
 
-                  {if ($children.haschildren)}
-                    {foreach $children.children as $grandchildren}
-                    <li><a href="{$grandchildren.link}">{$grandchildren.name}</a></li>
-                    {/foreach}
-                  {/if}
+                  <%if ($children.haschildren)%>
+                    <%foreach $children.children as $grandchildren%>
+                    <li><a href="<%$grandchildren.link%>"><%$grandchildren.name%></a></li>
+                    <%/foreach%>
+                  <%/if%>
 
                   </ol>
 
                 </li>
-                {/foreach}
+                <%/foreach%>
               </ol>
 
             </li>
-            {/foreach}
+            <%/foreach%>
 
             <li class="nav-item mobile">
               <a class="nav-link" href="">myFT</a>
@@ -153,9 +152,9 @@
             <a class="nav-link follow__rss" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
           </li>
         </ul>
-      </div>{* o-header__bottom *}
+      </div><!-- * o-header__bottom -->
     </div><!-- o-header__container -->    
-  </div>{* o-header-secondary *}
+  </div><!-- o-header-secondary -->
 
 </header>
 
