@@ -3,6 +3,10 @@ require '../vendor/autoload.php';
 
 $smarty = new Smarty;
 
+$smarty->left_delimiter = "<%";
+$smarty->right_delimiter = "%>";
+
+
 $smarty->assign('editions', array(
 		array('url'=>'', 'name'=>'繁体版'),
 		array('url'=>'', 'name'=>'英文版')
@@ -243,4 +247,65 @@ $smarty->assign('navs', array(
 		)
 	));
 
+$markets = array (
+  "id"=>"5",
+  "haschildren"=>"0",
+  "reid"=>"0",
+  "link"=>"/channel/markets.html",
+  "name"=>"金融市场",
+  "children"=>array (
+    array (
+      "id"=>"37",
+      "haschildren"=>"0",
+      "reid"=>"5",
+      "link"=>"/channel/stock.html",
+      "name"=>"股市",
+      "children"=>array (),
+      "code"=>"stock",
+      "type"=>"channel",
+    ),
+    array (
+      "id"=>"38",
+      "haschildren"=>"0",
+      "reid"=>"5",
+      "link"=>"/channel/forex.html",
+      "name"=>"外汇",
+      "children"=>array (),
+      "code"=>"forex",
+      "type"=>"channel",
+    ),
+    array (
+      "id"=>"39",
+      "haschildren"=>"0",
+      "reid"=>"5",
+      "link"=>"/channel/bond.html",
+      "name"=>"债市",
+      "children"=>array (),
+      "code"=>"bond",
+      "type"=>"channel",
+    ),
+    array (
+      "id"=>"40",
+      "haschildren"=>"0",
+      "reid"=>"5",
+      "link"=>"/channel/commodity.html",
+      "name"=>"大宗商品",
+      "children"=>array (),
+      "code"=>"commodity",
+      "type"=>"channel",
+    ),
+    array (
+      "id"=>"41",
+      "haschildren"=>"0",
+      "reid"=>"5",
+      "link"=>"http://markets.ft.com/research/Markets/Overview",
+      "name"=>"金融市场数据",
+      "children"=>array (),
+      "code"=>"",
+      "type"=>"link",
+    ),
+  ),
+  "code"=>"markets",
+  "type"=>"channel",
+);
 $smarty->display('../views/submenu.tpl');

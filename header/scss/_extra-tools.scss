@@ -4,7 +4,7 @@
 	margin: 0;
 	padding: 0;
 
-	@include oGridRespondTo(M) {
+	@include oGridRespondTo(L) {
 		display: inline-block;
 		height: $o-header-sub-nav-height;
 		//overflow: visible;

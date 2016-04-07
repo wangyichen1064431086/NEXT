@@ -2,11 +2,19 @@
 require '../vendor/autoload.php';
 
 $smarty = new Smarty;
+$smarty->setCaching(Smarty::CACHING_OFF);
+/*
+$smarty->left_delimiter = "<%";
+$smarty->right_delimiter = "%>";*/
 
-$smarty->assign('editions', array(
-		array('url'=>'', 'name'=>'繁体版'),
-		array('url'=>'', 'name'=>'英文版')
-	));
+$editions = array(
+	array('url'=>'', 'name'=>'繁体版'),
+	array('url'=>'', 'name'=>'英文版')
+);
+
+$smarty->assign('editions', $editions);
+
+var_dump($editions);
 
 $smarty->assign('toolsItems', array(
 		array('url'=>'', 'name'=>'myFT'),

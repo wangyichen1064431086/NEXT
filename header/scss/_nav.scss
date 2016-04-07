@@ -26,6 +26,8 @@
 // color set here will inherited by descendant `<a>`
 	@include oGridRespondTo(M) {
 		@include oColorsFor(o-header, text background);
+		white-space: nowrap;
+		overflow-x: hidden;
 	}
 	
 	@include oGridRespondTo($until:M) {
@@ -34,7 +36,6 @@
 
 		position: absolute;
 		display: none;
-		width: 100%;
 		
 		.nav-toggle[aria-pressed=true] + & {
 			display: block;
@@ -45,6 +46,7 @@
 			left: 0;
 			z-index: 1;
 			overflow-y: scroll;
+			width: 100%;
 			display: block;
 		}
 	}
@@ -54,6 +56,7 @@
 .nav-section{
 	@include oGridRespondTo(M) {
 		display: inline-block;
+
 
 // .nav-items will inherit the `background-color` set here so that under whatever state, .nav-items always has the same color as .nav-section.
 
@@ -355,8 +358,10 @@
 	display: inline-block;
 	background: none;
 	line-height: $o-header-bottom-height;
-	vertical-align: bottom;
-	padding: 0 7px;
+	height: 100%;
+	width: $o-header-bottom-height;
+	text-align: left;
+	vertical-align: middle;
 
 	span {
 		display: none;
@@ -364,11 +369,8 @@
 
 	@include oGridRespondTo($until:M) {
 		&:before {
-			@include oIconsSvgSassIcon(hamburger, oColorsGetColorFor(o-header, text), 20);
 			content: '';
-			position: relative;
-			top: 5px;
-			margin-right: 9px;
+			@include oIconsSvgSassIcon(hamburger, oColorsGetColorFor(o-header, text), 20);
 		}
 
 		&[aria-pressed=true]{
