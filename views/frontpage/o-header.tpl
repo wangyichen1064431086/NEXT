@@ -5,9 +5,9 @@
       <div class="o-header__top">
 
         <div class="o-header__edition">
-          <button class="switch-button">中国版</button>
+          <button class="switch-button">简体中文版</button>
           <ul class="editions">
-            <li><a href="" class="edition-link">繁体版</a>
+            <li><a href="" class="edition-link">繁体中文版</a>
             </li>
             <li><a href="" class="edition-link">英文版</a>
             </li>
@@ -15,8 +15,7 @@
         </div>
 
         <div class="o-header__masthead">
-          <a href="/" title="前往FT中文网首页"><%include file="./logo-masthead.tpl"%><span>FT中文网</span>
-          </a>
+          <a href="/" title="前往FT中文网首页"><span>FT中文网</span></a>
         </div> 
 
         <nav class="o-header__tools" role="navigation">
@@ -46,7 +45,7 @@
         </form>
 
         <div class="o-header__masthead-mobile">
-            <a href="/" title="前往FT中文网首页"><%include file="./logo-masthead.tpl"%><span>FT中文网</span></a>
+            <a href="/" title="前往FT中文网首页"><span>FT中文网</span></a>
         </div>
 
         <nav class="o-header__nav-container" role="navigation">
@@ -60,7 +59,7 @@
                                         
               <ol class="nav-items">
                 <li class="nav-item">
-                  <a class="nav-link" href="">繁体版</a>
+                  <a class="nav-link" href="">繁体中文版</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">英文版</a>
@@ -69,7 +68,7 @@
             </li>
 
             
-            <%foreach from=$datass1 item="level_1"%>
+            <%foreach from=$datass1.odatalist item="level_1"%>
             <li class="nav-section"
             <%if $topnav==$level_1.code%>
             aria-selected="true"
@@ -84,8 +83,8 @@
 
                 <li class="nav-item mobile">
                   <a class="nav-link" href="<%$level_1.link%>">
-                  <%if $level_1.link == '/'%>FT中文网首页
-                  <% else %>
+                  <%if $level_1.code=='home'%>FT中文网首页
+                  <%else%>
                   频道首页
                   <%/if%></a>
                 </li>

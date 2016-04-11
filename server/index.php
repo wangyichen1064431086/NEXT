@@ -1177,18 +1177,20 @@ $stream = array (
   "type"=>"channel",
 );
 
-$data = array(
-	$home, 
-	$china, 
-	$global, 
-	$economy, 
-	$markets, 
-	$companies, 
-	$opinion, 
-	$management, 
-	$lifestyle, 
-	$stream
-);
+$data = [
+	"odatalist"=>[
+		$home, 
+		$china, 
+		$global, 
+		$economy, 
+		$markets, 
+		$companies, 
+		$opinion, 
+		$management, 
+		$lifestyle, 
+		$stream
+	]
+];
 
 $smarty->assign('datass1', $data);
 

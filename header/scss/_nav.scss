@@ -370,6 +370,7 @@
 	@include oGridRespondTo($until:M) {
 		&:before {
 			content: '';
+			vertical-align: middle;
 			@include oIconsSvgSassIcon(hamburger, oColorsGetColorFor(o-header, text), 20);
 		}
 

@@ -70,7 +70,7 @@ gulp.task('lint', function() {
 
 
 gulp.task('copyjs', function() {
-  return gulp.src(['app/scripts/*.js', 'client/js/*.js'])
+  return gulp.src(['app/scripts/*.js', 'header/js/*.js'])
   .pipe(gulp.dest('.tmp/scripts'))
   .pipe(browserSync.stream({once:true}));
 });

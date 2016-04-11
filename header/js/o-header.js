@@ -128,6 +128,7 @@ var headerEl = document.querySelector('.o-header');
 var headerNavEl = headerEl.querySelector('.o-header__nav');
 var headerSecondaryEl = headerEl.querySelector('.o-header__secondary');
 var headerSecondaryElOffset = getElementOffset(headerSecondaryEl);
+console.log(headerSecondaryElOffset);
 
 new Header(headerEl);
 new Sticky(headerSecondaryEl, headerSecondaryElOffset.y);

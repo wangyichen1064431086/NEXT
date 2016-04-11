@@ -6,7 +6,7 @@
   <title>FTC Next Home Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#333333">
-  <meta name="description" content="<%$p.meta.description%>" />
+  <meta name="description" content="" />
   <meta name="copyright" content="FT中文网">
   <meta name="robots" content="index,follow">
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -83,16 +83,15 @@ svg4everybody();
 
 </head>
 
-<body>
+<body style="height:200vh">
 
 
 <%include file="./frontpage/o-header.tpl"%>
 
-<%include file="./frontpage/latest.tpl"%>
+
                     
 <%include file="./frontpage/o-footer.tpl"%>     
 
-<%include file="./frontpage/app-promo.tpl"%>
 
 
 

@@ -32,6 +32,28 @@ $o-header-mobile-right-width: percentage(($o-grid-columns - $o-header-mobile-wid
 	}
 }
 
+@mixin oHeaderLogo($height) {
+	@if unitless($height) {
+		$height: $height * 1px;
+	}
+	display: block;
+	margin: 0 auto;
+	padding: 0;
+	
+	height: $height;
+	width: 4.7 * $height;
+
+	background-image: url('/ftc-icons/assets/png/brand-ftc-masthead-white.png');
+	background-image: url('/ftc-icons/assets/svg/brand-ftc-masthead-white.svg');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+
+	span {
+		display: none;
+	}
+}
+
 @mixin oHeaderSearchExpanded {
 	cursor: text;
 	width: 100%;
