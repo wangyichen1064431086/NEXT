@@ -86,13 +86,13 @@ svg4everybody();
 <body>
 
 
-<% include file="./frontpage/o-header.tpl" %>
+<%include file="./frontpage/o-header.tpl"%>
 
-<% include file="./frontpage/latest.tpl" %>
+<%include file="./frontpage/latest.tpl"%>
                     
-<% include file="./frontpage/o-footer.tpl" %>     
+<%include file="./frontpage/o-footer.tpl"%>     
 
-<% include file="./frontpage/app-promo.tpl" %>
+<%include file="./frontpage/app-promo.tpl"%>
 
 
 

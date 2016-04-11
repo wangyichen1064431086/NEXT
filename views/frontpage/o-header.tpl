@@ -6,32 +6,35 @@
 
         <div class="o-header__edition">
           <button class="switch-button">中国版</button>
-
           <ul class="editions">
-            {foreach $editions as $edition}
-            <li><a href="{$edition.url}" class="edition-link">{$edition.name}</a>
+            <li><a href="" class="edition-link">繁体版</a>
             </li>
-            {/foreach}
+            <li><a href="" class="edition-link">英文版</a>
+            </li>
           </ul>
         </div>
 
         <div class="o-header__masthead">
-          <a href="/" title="前往FT中文网首页">{include file="./logo-masthead.tpl"}<span>FT中文网</span>
+          <a href="/" title="前往FT中文网首页"><%include file="./logo-masthead.tpl"%><span>FT中文网</span>
           </a>
         </div> 
 
         <nav class="o-header__tools" role="navigation">
           <ul class="tools-items">
-            {foreach $toolsItems as $item}
               <li class="tools-item">
-                <a class="tools-link" href="{$item.url}">{$item.name}</a>
+                <a class="tools-link" href="">myFT</a>
               </li>
-            {/foreach}
+              <li class="tools-item">
+                <a class="tools-link" href="">退出</a>
+              </li>
+              <li class="tools-item">
+                <a class="tools-link" href="">账户设置</a>
+              </li>
           </ul>
         </nav>
-      </div>{* o-header__top *}
-    </div>{* o-header__container *}    
-  </div>{* o-header__primary *}
+      </div><!--  o-header__top --> 
+    </div><!--  o-header__container -->     
+  </div><!--  o-header__primary  -->
 
   <div class="o-header__secondary">
     <div class="o-header__container">
@@ -43,67 +46,94 @@
         </form>
 
         <div class="o-header__masthead-mobile">
-            <a href="/" title="前往FT中文网首页">{include file="./logo-masthead.tpl"}<span>FT中文网</span></a>
+            <a href="/" title="前往FT中文网首页"><%include file="./logo-masthead.tpl"%><span>FT中文网</span></a>
         </div>
 
         <nav class="o-header__nav-container" role="navigation">
           
           <button class="nav-toggle" data-o-header-togglable data-o-header-togglable-nav><span>Menu</span></button>
 
-          <ol class="o-header__nav">
+          <ol class="o-header__nav level-1">
 
             <li class="nav-section mobile">
               <button class="nav-section-head mobile" data-o-header-selectable aria-selected="true">切换版本</button>
                                         
               <ol class="nav-items">
-                {foreach $editions as $edition}
                 <li class="nav-item">
-                  <a class="nav-link" href="{$edition.url}">{$edition.name}</a>
+                  <a class="nav-link" href="">繁体版</a>
                 </li>
-                {/foreach}
+                <li class="nav-item">
+                  <a class="nav-link" href="">英文版</a>
+                </li>
               </ol>
             </li>
 
-            {foreach $navs as $nav}
-            <li class="nav-section" aria-selected="{$nav.selected}" data-section="{$nav.channel}">
+            
+            <%foreach from=$datass1 item="level_1"%>
+            <li class="nav-section"
+            <%if $topnav==$level_1.code%>
+            aria-selected="true"
+            <%/if%>
+            data-section="<%$level_1.code%>">
 
-              <button class="nav-section-head mobile" data-o-header-selectable>{$nav.name}</button>
+              <button class="nav-section-head mobile" data-o-header-selectable><%$level_1.name%></button>
 
-              <a class="nav-section-head desktop" href="{$nav.url}">{$nav.name}</a>
+              <a class="nav-section-head desktop" href="<%$level_1.link%>"><%$level_1.name%></a>
 
-              <ol class="nav-items">
-                {foreach $nav.subNavs as $subNav}
+              <ol class="nav-items level-2">
+
+                <li class="nav-item mobile">
+                  <a class="nav-link" href="<%$level_1.link%>">
+                  <%if $level_1.link == '/'%>FT中文网首页
+                  <% else %>
+                  频道首页
+                  <%/if%></a>
+                </li>
+
+
+                <%foreach from=$level_1.children item="level_2"%>
                 
-                <li class="nav-item{if (isset($subNav.mobile))} mobile{/if}"{if (isset($subNav.selected))} aria-selected="{$subNav.selected}"{/if}{if (isset($subNav.popup))}  aria-popup="true"{/if}>
-                  <a class="nav-link" href="{$subNav.url}">{$subNav.name}</a>
-
-                  <ol class="nav-sub-items">
-
-                  {if (isset($subNav.popup))}
-                    {foreach $subNav.subSubNavs as $subSubNav}
-                    <li><a href="{$subSubNav.url}">{$subSubNav.name}</a></li>
-                    {/foreach}
-                  {/if}
+                <li class="nav-item"
+                <%if $subnav==$level_2.code%>
+                aria-selected="true"
+                <%/if%>
+                <%if ($level_2.haschildren)%>
+                aria-haspopup="true"
+                <%/if%>
+                data-channel="<%$level_2.code%>">
+                  <a class="nav-link" href="<%$level_2.link%>"><%$level_2.name %></a>
+                  
+                  <%if ($level_2.haschildren)%>
+                  <ol class="nav-sub-items level-3">
+                  
+                    <%foreach $level_2.children as $level_3%>
+                    <li><a href="<%$level_3.link%>"><%$level_3.name%></a></li>
+                    <%/foreach%>
 
                   </ol>
+                  <%/if%>
 
                 </li>
-                {/foreach}
+                <%/foreach%>
               </ol>
 
             </li>
-            {/foreach}
+            <%/foreach%>
 
-            {foreach $toolsItems as $item}
             <li class="nav-item mobile">
-              <a class="nav-link" href="{$item.url}">{$item.name}</a>
+              <a class="nav-link" href="">myFT</a>
             </li>
-            {/foreach}
+            <li class="nav-item mobile">
+              <a class="nav-link" href="">退出</a>
+            </li>
+            <li class="nav-item mobile">
+              <a class="nav-link" href="">账户设置</a>
+            </li>
           </ol>
         </nav>
 
         <ul class="o-header__extra-tools nav-items">
-          <li class="nav-item" aria-popup="true">
+          <li class="nav-item" aria-haspopup="true">
             
             <a class="nav-link" href="http://www.ftchinese.com/m/corp/follow.html">关注我们</a>
 
@@ -122,7 +152,7 @@
               <li><a href="" class="follow-google-plus">Google+</a></li>
             </ol>
           </li>
-          <li class="nav-item" aria-popup="true">
+          <li class="nav-item" aria-haspopup="true">
             <span class="nav-link">工具</span>
             <ol class="nav-sub-items">
               <li><a href="">移动应用大全</a></li>
@@ -138,8 +168,8 @@
             <a class="nav-link follow__rss" href="http://www.ftchinese.com/channel/rss.html"><span>RSS</span></a>
           </li>
         </ul>
-      </div>{* o-header__bottom *}
+      </div><!-- * o-header__bottom -->
     </div><!-- o-header__container -->    
-  </div>{* o-header-secondary *}
+  </div><!-- o-header-secondary -->
 
 </header>

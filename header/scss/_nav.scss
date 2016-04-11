@@ -213,7 +213,7 @@
 		position: relative;
 		display: inline-block;
 		
-		&[aria-popup=true] {
+		&[aria-haspopup=true] {
 			.nav-link {
 				&:after {
 					content: '';
