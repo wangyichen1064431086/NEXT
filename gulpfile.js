@@ -27,7 +27,7 @@ gulp.task('htmllint', function() {
 gulp.task('styles', function styles() {
   const DEST = '.tmp/styles';
 
-  return gulp.src('header/o-header.scss')
+  return gulp.src('client/*.scss')
     .pipe($.changed(DEST)) 
     .pipe($.plumber()) 
     .pipe($.sourcemaps.init({loadMaps:true})) 
@@ -70,7 +70,7 @@ gulp.task('lint', function() {
 
 
 gulp.task('copyjs', function() {
-  return gulp.src(['app/scripts/*.js', 'header/js/*.js'])
+  return gulp.src(['app/scripts/*.js', 'client/js/*.js'])
   .pipe(gulp.dest('.tmp/scripts'))
   .pipe(browserSync.stream({once:true}));
 });
@@ -98,10 +98,11 @@ gulp.task('requestdata', function(done) {
       $('.header-container').remove();
       $('.nav-place-holder').remove();
       $('.footer-container').remove();
+      $('#overlay-login').remove();
       $('.app-download-container').remove();
       const data = $('body').html();
 
-      fs.writeFile('views/frontpage/latest.mustache', data, function(err) {
+      fs.writeFile('views/partials/body.html', data, function(err) {
         if (err) {return done(err)}
         done();
       });
@@ -150,16 +151,24 @@ gulp.task('watch', gulp.parallel(
     serveStatic: ['bower_components', '.tmp']
   });
 
-  gulp.watch('header/icons/*', gulp.parallel('copyicon'));
-  gulp.watch(['views/**/*', 'server/*']);
-  gulp.watch(['header/**/*.js', 'app/**/*.js'], gulp.parallel('copyjs'));
-  gulp.watch('header/**/*.scss', gulp.parallel('styles'));
+  gulp.watch(['views/**/*', 'server/*'], browserSync.reload);
+  gulp.watch(['client/**/*.js', 'app/**/*.js'], gulp.parallel('copyjs'));
+  gulp.watch('client/**/*.scss', gulp.parallel('styles'));
 }));
 
 gulp.task('clean', function() {
   return del(['.tmp/**', 'dist']).then(()=>{
     console.log('Old files deleted');
   });
+});
+
+gulp.task('testserver', function() {
+  return gulp.src(['views/partials/nav.html'])
+    .pipe($.replace('<!-- easyapi -->', '<%easyapi command="11001" assign="datass1" debug=false%><%*$datass1.odatalist|var_dump*%>'))
+    .pipe($.smoosher({
+      base: '.tmp'
+    }))
+    .pipe(gulp.dest('../www/frontend/tpl/next/partials'));
 });
 
 /*======================*/
@@ -202,32 +211,6 @@ gulp.task('extras', function () {
 gulp.task('ad', function () {
   return gulp.src('app/m/marketing/*')
     .pipe(gulp.dest('dist/m/marketing'));
-});
-
-
-
-gulp.task('home', function(done) {
-  const dateStamp = new Date().getTime();
-  const url = 'http://www.ftchinese.com/m/corp/p0.html?' + dateStamp;
-
-  request(url, function(error, response, body) {
-    if (!error && response.statusCode == 200) {
-      var $ = cheerio.load(body, {
-        decodeEntities: false
-      });
-
-      const data = $('body').html();
-      const index = fs.readFileSync('app/index.html', 'utf8');
-      $ = cheerio.load(index,  {
-        decodeEntities: false
-      });
-      $('body').replaceWith(data);
-      fs.writeFile('world.html', $.html(), function(err) {
-        if (err) {done(err)}
-      });
-      done();
-    }
-  });
 });
 
 gulp.task('build', gulp.series('styles', gulp.parallel('html', 'images',  'extras', 'ad')));
@@ -286,80 +269,3 @@ gulp.task('copy', gulp.series('build', 'datestamp' ,function () {
 
   return merge(cssjs, style, market, api, pageMaker, pageMaker2, p0, partials, html);
 }));
-
-
-
-
-// const now = new Date();
-// const year = now.getFullYear();
-// const month = now.getFullYear();
-// const date = now.getDate();
-// const dateStamp = year + '-' + month + '-' + date;
-
-// gulp.task('story', function () {
-
-//   const urlSource = 'https://backyard.ftchinese.com/falcon.php/cmsusers/login';
-
-//   // var options = {
-//   //     host: url.parse(urlSource).hostname,
-//   //     path: url.parse(urlSource).pathname + unescape(url.parse(urlSource).search || '')
-//   // }
-
-//   request.post({
-//     url: 'https://backyard.ftchinese.com/falcon.php/cmsusers/login',
-//     form: {"username":"", "password":""},
-//     headers: {
-//       'User-Agent': 'request'
-//     }
-//   }, function(error, response, body){
-//     //var storyapi = 'https://backyard.ftchinese.com/falcon.php/homepage/getstoryapi/' + thedatestamp;
-//     //var headers = response.headers;
-//     // headers['Content-Length'] = 100000;
-//     // headers['User-Agent'] = 'request';
-//     // headers['expires'] = 'Fri, 19 Feb 2016 08:52:00 GMT';
-
-//     // console.log (headers);
-
-//   /*
-//       headers = {
-//         'User-Agent': 'request',
-//         'expires': 'Fri, 19 Feb 2016 08:52:00 GMT'
-//       };
-//   */
-//   });
-// });
-
-// gulp.src('getapi', function() {
-//   const storyapi = 'https://backyard.ftchinese.com/falcon.php/homepage/getstoryapi/' + dateStamp;
-
-//   var headers = {
-//   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-//   //'Accept-Encoding':'gzip, deflate, sdch',
-//   'Accept-Language':'zh-CN,zh;q=0.8,en;q=0.6',
-//   'Cache-Control':'max-age=0',
-//   'Connection':'keep-alive',
-//   'Cookie':'FTSTAT_ok_times=22; _ga=GA1.3.637326541.1424081173; campaign=2015spring5; _gscu_2081532775=0.7.0.5%7C2483082596632ej013%7C1424859625967%7C8%7C3%7C27%7C0; __utma=65529209.637326541.1424081173.1449122460.1454643214.25; __utmz=65529209.1449122460.24.6.utmcsr=EmailNewsletter|utmccn=1D110215|utmcmd=referral; __utmv=65529209.visitor_DailyEmail; __gads=ID=cd878295be28de40:T=1454986613:S=ALNI_MbkpbmkeeFOrhk1DVu05zuKdgqPmw; SIVISITOR=Ni42NzQuOTg3MjQ2MjgyMzk4Ny4xNDU0OTg2NjE0Mzc0Li0xZDZkODE5Ng__*; ccode=1P110215; faid=97e09ef664648f4bcc02a418e06717d3; ftn_cookie_id=1455247531.176777595; PHPSESSID=f8b0d2f63c554af8a5c8ef8a79b4c4bb; _ga=GA1.2.637326541.1424081173; ftcms_uid=13; ftcms_username=oliver.zhang; ftcms_groups=editor',
-//   'Host':'backyard.ftchinese.com',
-//   'Upgrade-Insecure-Requests':'1',
-//   //'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
-//   }
-
-//   request.get({
-//       url: storyapi,
-//       headers: headers
-//   },function(error, response, body){
-//     // The full html of the authenticated page
-//     console.log(body);
-
-//     var fileName = './app/api/page/stories.json';
-
-//     fs.writeFile(fileName, body, function(err) {
-//         if(err) {
-//             return console.log(err);
-//         }
-//         console.log(storyapi);
-//         console.log('writen to');
-//         console.log(fileName);
-//     });
-//   });
-// });

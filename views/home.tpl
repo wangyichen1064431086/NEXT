@@ -84,14 +84,15 @@ svg4everybody();
 </head>
 
 <body style="height:200vh">
+<link rel="stylesheet" type="text/css" href="styles/o-header.css">
 
 
-<%include file="./frontpage/o-header.tpl"%>
+<%include file="partials/header.html"%>
+<%include file="partials/nav.html"%>
+<%*include file="partials/body.html"*%>
 
-
-                    
-<%include file="./frontpage/o-footer.tpl"%>     
-
+<%include file="partials/footer.html"%>     
+<%include file="partials/QrCode.html"%>
 
 
 
@@ -100,8 +101,7 @@ svg4everybody();
 <![endif]-->
 
 <!-- build:js scripts/main.js -->
-<script src="scripts/dom-delegate.js"></script>
-<script src="scripts/o-header.js"></script>
+
 <!-- endbuild -->
 
 

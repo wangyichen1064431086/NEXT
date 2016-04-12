@@ -3,31 +3,14 @@
 	margin: 0;
 	border: 0;
 
-	@include oGridRespondTo($until: M) {
-// placeholder to keep document height intact when `.o-header__secondary` becomes fixed and moved out of document flow.
-		&:after {
-			content: '';
-			display: block;
-			height: $o-header-bottom-height;
-			background-color: transparent;
-		}
-	}
+	display: none;
 
 	@include oGridRespondTo(M) {
+		display: block;
 		position: relative;
 		z-index: 1;
-
-		& {
-			border-bottom: 32px solid transparent;
-		}
 // a placeholder to keep document height.
 // since .o-header__bottom is moved out of document flow, its height should be compensated to keep document height.
-		.o-header--nav-sticky &:after {
-			content: '';
-			display: block;
-			height: 45px;
-			background-color: transparent;
-		}
 	}
 
 	@include oGridTargetIE8 {

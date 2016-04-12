@@ -1,0 +1,8 @@
+.o-header__masthead {
+	text-align: center;
+	padding: ($o-header-top-height - $o-header-logo-height)/2 0;
+	margin: 0;
+	> a {
+		@include oHeaderLogo(36);
+	}
+}

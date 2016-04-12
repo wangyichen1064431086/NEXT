@@ -10,12 +10,9 @@ body {
 
 @import "scss/colors";
 @import "scss/vars_mixins";
-@import "scss/base";
-@import "scss/edition-switcher";
-@import "scss/masthead";
-@import "scss/nav";
-@import "scss/extra-tools";
-@import "scss/search";
-@import "scss/tools";
 
-
+@import "nav/base";
+@import "nav/masthead";
+@import "nav/nav";
+@import "nav/extra-tools";
+@import "nav/search";

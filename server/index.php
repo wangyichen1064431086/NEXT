@@ -8,6 +8,8 @@ $smarty->right_delimiter = "%>";
 
 $smarty->setCaching(Smarty::CACHING_OFF);
 
+$smarty->setTemplateDir('../views');
+
 $home = array (
   "id"=>"1",
   "haschildren"=>"1",
@@ -1197,4 +1199,4 @@ $smarty->assign('datass1', $data);
 $smarty->assign('topnav', 'china');
 $smarty->assign('subnav', 'chinabusiness');
 
-$smarty->display('../views/home.tpl');
+$smarty->display('home.tpl');
